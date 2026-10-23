@@ -1,0 +1,12 @@
+# Router de Internet (ISP). Une pcint con el backbone de RioNet por r1 y r6.
+ip addr add 8.8.8.1/24 dev eth0        # hacia pcint
+ip addr add 172.16.77.1/30 dev eth1    # hacia r1
+ip addr add 172.16.77.5/30 dev eth2    # hacia r6
+
+# Activar el reenvío de paquetes
+sysctl -w net.ipv4.ip_forward=1
+
+# Vuelta hacia los clientes: sus prefijos públicos están detrás de RioNet.
+# Se entregan a r1, que ya sabe llegar a ellos.
+ip route add 203.0.113.0/27 via 172.16.77.2    # Cliente A
+ip route add 203.0.113.32/28 via 172.16.77.2   # Cliente B
