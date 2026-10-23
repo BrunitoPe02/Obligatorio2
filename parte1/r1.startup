@@ -1,1 +1,13 @@
 systemctl start frr
+
+ip addr add 172.16.77.2/30 dev eth0    # hacia rint
+ip addr add 172.16.77.9/30 dev eth1    # hacia r2
+ip addr add 172.16.77.13/30 dev eth2   # hacia r3
+
+# Ida del Cliente A: lo que no está en una red conectada sale hacia rint.
+# Si la IP destino del paquete no coincide con ninguna otra ruta, se lo paso a 172.16.77.1 (rint).
+ip route add default via 172.16.77.1 # via es a quién se lo entregás
+
+# Vuelta hacia el Cliente A: su prefijo público está detrás de r3.
+# Si la IP destino del paquete está en 203.0.113.0/27, se lo paso a 172.16.77.14.
+ip route add 203.0.113.0/27 via 172.16.77.14
