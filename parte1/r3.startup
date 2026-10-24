@@ -1,1 +1,23 @@
 systemctl start frr
+
+# direcciones ip
+ip addr add 172.16.77.14/30 dev eth0 #r1
+ip addr add 172.16.77.18/30 dev eth1 #r2
+ip addr add 172.16.77.29/30 dev eth2 #r5
+ip addr add 192.168.77.1/30 dev eth3 #rclA
+
+# rutas estáticas
+ip route add 8.8.8.0/24 via 172.16.77.13   # rint
+ip route add 192.168.100.0/24 via 192.168.77.2   # LANA
+ip route add 203.0.113.32/28 via 172.16.77.30    # DMZ B
+ip route add 192.168.77.4/30 via 172.16.77.30    # rclb
+ip route add 192.168.77.0/30 via 192.168.77.2    # rcla
+
+ip route add 172.16.77.0/30 via 172.16.77.13    #r1-rint
+ip route add 172.16.77.8/30 via 172.16.77.13    #r1-r2 DESEMPATE
+ip route add 172.16.77.20/30 via 172.16.77.17   #r2-r4
+ip route add 172.16.77.24/30 via 172.16.77.17   #r2-r5 DESEMPATE
+ip route add 172.16.77.32/30 via 172.16.77.30   #r4-r5
+ip route add 172.16.77.36/30 via 172.16.77.17   #r4-r6 DESEMPATE
+ip route add 172.16.77.40/30 via 172.16.77.30   #r5-r6 
+ip route add 172.16.77.4/30 via 172.16.77.30    #r6-rint
