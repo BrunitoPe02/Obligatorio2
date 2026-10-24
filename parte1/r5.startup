@@ -23,5 +23,4 @@ ip route add 172.16.77.36/30 via 172.16.77.33   #r4-r6 DESEMPATE
 ip route add 172.16.77.4/30 via 172.16.77.42    #r6-rint
 
 
-ip route add 203.0.113.32/28 via 192.168.77.6
 ip route add 203.0.113.0/27 via 172.16.77.29
