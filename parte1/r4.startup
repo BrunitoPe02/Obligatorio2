@@ -8,6 +8,7 @@ ip addr add 172.16.77.37/30 dev eth2 #r6
 # rutas estáticas
 ip route add 8.8.8.0/24 via 172.16.77.38   # rint
 ip route add 192.168.100.0/24 via 172.16.77.21   # LANA ===== desempateeeee
+ip route add 203.0.113.0/27 via 172.16.77.21     # Cliente A (IP de NAT) DESEMPATE
 ip route add 203.0.113.32/28 via 172.16.77.34    # DMZ B
 ip route add 192.168.77.4/30 via 172.16.77.34    # rclb
 ip route add 192.168.77.0/30 via 172.16.77.21    # rcla === desempateee

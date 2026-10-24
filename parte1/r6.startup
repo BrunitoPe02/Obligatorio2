@@ -12,13 +12,15 @@ ip route add 8.8.8.0/24 via 172.16.77.5          # rint
 ip route add 192.168.77.0/30 via 172.16.77.41    # r3-rclA 
 ip route add 192.168.77.4/30 via 172.16.77.41    # r5-rclB
 ip route add 192.168.100.0/24 via 172.16.77.41   # LAN A
+ip route add 203.0.113.0/27 via 172.16.77.41     # Cliente A (IP de NAT)
 ip route add 203.0.113.32/28 via 172.16.77.41    # DMZ B
 
 # --- backbone ---
 ip route add 172.16.77.0/30 via 172.16.77.37      # rint-r1 DESEMPATE
 ip route add 172.16.77.8/30 via 172.16.77.37     # r1-r2 DESEMPATE
-ip route add 172.16.77.12/30 via 172.16.77.41    # r1-r3 
-ip route add 172.16.77.20/30 via 172.16.77.37    # r2-r4  
+ip route add 172.16.77.12/30 via 172.16.77.41    # r1-r3
+ip route add 172.16.77.16/30 via 172.16.77.37    # r2-r3 DESEMPATE
+ip route add 172.16.77.20/30 via 172.16.77.37    # r2-r4
 ip route add 172.16.77.24/30 via 172.16.77.41    # r2-r5  
 ip route add 172.16.77.28/30 via 172.16.77.41    # r3-r5  
 ip route add 172.16.77.32/30 via 172.16.77.37    # r4-r5 DESEMPATE
