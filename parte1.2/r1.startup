@@ -4,25 +4,3 @@ ip addr add 172.16.77.2/30 dev eth0    # hacia rint
 ip addr add 172.16.77.9/30 dev eth1    # hacia r2
 ip addr add 172.16.77.13/30 dev eth2   # hacia r3
 
-# Ida del Cliente A: lo que no está en una red conectada sale hacia rint.
-# Si la IP destino del paquete no coincide con ninguna otra ruta, se lo paso a 172.16.77.1 (rint).
-ip route add default via 172.16.77.1 # via es a quién se lo entregás
-
-# Vuelta hacia el Cliente A: su prefijo público está detrás de r3.
-# Si la IP destino del paquete está en 203.0.113.0/27, se lo paso a 172.16.77.14.
-ip route add 203.0.113.0/27 via 172.16.77.14
-
-# Resto de RioNet: camino más corto sin pasar por rint; si empata, el router de menor número.
-ip route add 192.168.100.0/24 via 172.16.77.14   # LANA
-ip route add 203.0.113.32/28 via 172.16.77.10    # DMZ B DESEMPATE
-ip route add 192.168.77.4/30 via 172.16.77.10    # rclb DESEMPATE
-ip route add 192.168.77.0/30 via 172.16.77.14    # rcla
-
-ip route add 172.16.77.16/30 via 172.16.77.10   #r2-r3 DESEMPATE
-ip route add 172.16.77.20/30 via 172.16.77.10   #r2-r4
-ip route add 172.16.77.24/30 via 172.16.77.10   #r2-r5
-ip route add 172.16.77.28/30 via 172.16.77.14   #r3-r5
-ip route add 172.16.77.32/30 via 172.16.77.10   #r4-r5 DESEMPATE
-ip route add 172.16.77.36/30 via 172.16.77.10   #r4-r6
-ip route add 172.16.77.40/30 via 172.16.77.10   #r5-r6 DESEMPATE
-ip route add 172.16.77.4/30 via 172.16.77.10    #r6-rint DESEMPATE
