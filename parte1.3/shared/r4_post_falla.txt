@@ -2,6 +2,7 @@
     link/ether 4a:01:31:a4:23:c2 brd ff:ff:ff:ff:ff:ff
 
 Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
-5.5.5.5           1 Full/DR         44m44s            36.504s 172.16.77.34    eth1:172.16.77.33                    0     0     0
-6.6.6.6           1 Full/DR         44m44s            36.504s 172.16.77.38    eth2:172.16.77.37                    0     0     0
+2.2.2.2           1 Full/Backup     5m23s             38.192s 172.16.77.21    eth0:172.16.77.22                    1     0     0
+5.5.5.5           1 Full/DR         58m54s            37.040s 172.16.77.34    eth1:172.16.77.33                    0     0     0
+6.6.6.6           1 Full/DR         58m54s            37.040s 172.16.77.38    eth2:172.16.77.37                    0     0     0
 
