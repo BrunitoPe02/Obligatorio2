@@ -1,0 +1,10 @@
+systemctl start frr
+
+# direcciones ip
+ip addr add 172.16.77.26/30 dev eth0 #r2
+ip addr add 172.16.77.30/30 dev eth1 #r3
+ip addr add 172.16.77.34/30 dev eth2 #r4
+ip addr add 172.16.77.41/30 dev eth3 #r6
+ip addr add 192.168.77.5/30 dev eth4 #rclB
+
+# Las rutas se aprenden por OSPF (ver r5/etc/frr/frr.conf)
