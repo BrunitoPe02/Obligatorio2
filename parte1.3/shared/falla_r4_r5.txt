@@ -1,0 +1,547 @@
+18:53:32.935273 IP (tos 0xc0, ttl 1, id 16002, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:53:32.937590 IP (tos 0xc0, ttl 1, id 16294, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:53:42.938304 IP (tos 0xc0, ttl 1, id 16005, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:53:42.938868 IP (tos 0xc0, ttl 1, id 16298, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:53:50.623911 IP (tos 0xc0, ttl 1, id 16008, offset 0, flags [none], proto OSPF (89), length 108)
+    172.16.77.33 > 224.0.0.5: OSPFv2, LS-Update, length 88
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0), 1 LSA
+	  LSA #1
+	  Advertising Router 2.2.2.2, seq 0x8000002c, age 4s, length 40
+	    Router LSA (1), LSA-ID: 2.2.2.2
+	    Options: [External]
+	    Router LSA Options: [none]
+	      Neighbor Network-ID: 172.16.77.10, Interface Address: 172.16.77.10
+		topology default (0), metric 10
+	      Neighbor Network-ID: 172.16.77.18, Interface Address: 172.16.77.17
+		topology default (0), metric 10
+	      Neighbor Network-ID: 172.16.77.26, Interface Address: 172.16.77.25
+		topology default (0), metric 10
+18:53:50.623920 IP (tos 0xc0, ttl 1, id 16301, offset 0, flags [none], proto OSPF (89), length 108)
+    172.16.77.34 > 224.0.0.5: OSPFv2, LS-Update, length 88
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0), 1 LSA
+	  LSA #1
+	  Advertising Router 2.2.2.2, seq 0x8000002c, age 2s, length 40
+	    Router LSA (1), LSA-ID: 2.2.2.2
+	    Options: [External]
+	    Router LSA Options: [none]
+	      Neighbor Network-ID: 172.16.77.10, Interface Address: 172.16.77.10
+		topology default (0), metric 10
+	      Neighbor Network-ID: 172.16.77.18, Interface Address: 172.16.77.17
+		topology default (0), metric 10
+	      Neighbor Network-ID: 172.16.77.26, Interface Address: 172.16.77.25
+		topology default (0), metric 10
+18:53:50.624052 IP (tos 0xc0, ttl 1, id 16009, offset 0, flags [none], proto OSPF (89), length 64)
+    172.16.77.33 > 172.16.77.34: OSPFv2, LS-Ack, length 44
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	  Advertising Router 2.2.2.2, seq 0x8000002c, age 2s, length 40
+	    Router LSA (1), LSA-ID: 2.2.2.2
+	    Options: [External] [|ospf2]
+18:53:52.659982 IP (tos 0xc0, ttl 1, id 16307, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:53:52.660296 IP (tos 0xc0, ttl 1, id 16012, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:53:55.625444 IP (tos 0xc0, ttl 1, id 16310, offset 0, flags [none], proto OSPF (89), length 108)
+    172.16.77.34 > 224.0.0.5: OSPFv2, LS-Update, length 88
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0), 1 LSA
+	  LSA #1
+	  Advertising Router 2.2.2.2, seq 0x8000002e, age 7s, length 40
+	    Router LSA (1), LSA-ID: 2.2.2.2
+	    Options: [External]
+	    Router LSA Options: [none]
+	      Neighbor Network-ID: 172.16.77.10, Interface Address: 172.16.77.10
+		topology default (0), metric 10
+	      Neighbor Network-ID: 172.16.77.18, Interface Address: 172.16.77.17
+		topology default (0), metric 10
+	      Neighbor Network-ID: 172.16.77.26, Interface Address: 172.16.77.25
+		topology default (0), metric 10
+18:53:55.625558 IP (tos 0xc0, ttl 1, id 16016, offset 0, flags [none], proto OSPF (89), length 108)
+    172.16.77.33 > 224.0.0.5: OSPFv2, LS-Update, length 88
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0), 1 LSA
+	  LSA #1
+	  Advertising Router 2.2.2.2, seq 0x8000002e, age 9s, length 40
+	    Router LSA (1), LSA-ID: 2.2.2.2
+	    Options: [External]
+	    Router LSA Options: [none]
+	      Neighbor Network-ID: 172.16.77.10, Interface Address: 172.16.77.10
+		topology default (0), metric 10
+	      Neighbor Network-ID: 172.16.77.18, Interface Address: 172.16.77.17
+		topology default (0), metric 10
+	      Neighbor Network-ID: 172.16.77.26, Interface Address: 172.16.77.25
+		topology default (0), metric 10
+18:53:55.625572 IP (tos 0xc0, ttl 1, id 16017, offset 0, flags [none], proto OSPF (89), length 64)
+    172.16.77.33 > 172.16.77.34: OSPFv2, LS-Ack, length 44
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	  Advertising Router 2.2.2.2, seq 0x8000002e, age 7s, length 40
+	    Router LSA (1), LSA-ID: 2.2.2.2
+	    Options: [External] [|ospf2]
+18:54:02.662220 IP (tos 0xc0, ttl 1, id 16021, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:54:02.662704 IP (tos 0xc0, ttl 1, id 16315, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:54:12.664026 IP (tos 0xc0, ttl 1, id 16026, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:54:12.665258 IP (tos 0xc0, ttl 1, id 16319, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:54:22.662398 IP (tos 0xc0, ttl 1, id 16031, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:54:22.663260 IP (tos 0xc0, ttl 1, id 16323, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:54:27.646349 IP (tos 0xc0, ttl 1, id 16034, offset 0, flags [none], proto OSPF (89), length 140)
+    172.16.77.33 > 224.0.0.5: OSPFv2, LS-Update, length 120
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0), 2 LSAs
+	  LSA #1
+	  Advertising Router 4.4.4.4, seq 0x80000016, age 1s, length 40
+	    Router LSA (1), LSA-ID: 4.4.4.4
+	    Options: [External]
+	    Router LSA Options: [none]
+	      Stub Network: 172.16.77.20, Mask: 255.255.255.252
+		topology default (0), metric 10
+	      Neighbor Network-ID: 172.16.77.34, Interface Address: 172.16.77.33
+		topology default (0), metric 10
+	      Neighbor Network-ID: 172.16.77.38, Interface Address: 172.16.77.37
+		topology default (0), metric 10
+	  LSA #2
+	  Advertising Router 4.4.4.4, seq 0x80000006, age 3600s, length 12
+	    Network LSA (2), LSA-ID: 172.16.77.22
+	    Options: [External]
+	    Mask 255.255.255.252
+	    Connected Routers:
+	      2.2.2.2
+	      4.4.4.4
+18:54:28.647410 IP (tos 0xc0, ttl 1, id 16329, offset 0, flags [none], proto OSPF (89), length 84)
+    172.16.77.34 > 224.0.0.5: OSPFv2, LS-Ack, length 64
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	  Advertising Router 4.4.4.4, seq 0x80000016, age 1s, length 40
+	    Router LSA (1), LSA-ID: 4.4.4.4
+	    Options: [External]
+	  Advertising Router 4.4.4.4, seq 0x80000006, age 3600s, length 12
+	    Network LSA (2), LSA-ID: 172.16.77.22
+	    Options: [External] [|ospf2]
+18:54:32.666559 IP (tos 0xc0, ttl 1, id 16037, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:54:32.667321 IP (tos 0xc0, ttl 1, id 16332, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:54:42.668550 IP (tos 0xc0, ttl 1, id 16336, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:54:42.668635 IP (tos 0xc0, ttl 1, id 16040, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:54:52.667912 IP (tos 0xc0, ttl 1, id 16340, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:54:52.668542 IP (tos 0xc0, ttl 1, id 16043, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:55:02.671800 IP (tos 0xc0, ttl 1, id 16344, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:55:02.671830 IP (tos 0xc0, ttl 1, id 16046, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:55:12.674388 IP (tos 0xc0, ttl 1, id 16049, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:55:12.674862 IP (tos 0xc0, ttl 1, id 16348, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:55:22.673080 IP (tos 0xc0, ttl 1, id 16052, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:55:22.674196 IP (tos 0xc0, ttl 1, id 16352, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:55:32.676623 IP (tos 0xc0, ttl 1, id 16055, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:55:32.677118 IP (tos 0xc0, ttl 1, id 16356, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:55:42.676879 IP (tos 0xc0, ttl 1, id 16360, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:55:42.677051 IP (tos 0xc0, ttl 1, id 16058, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:55:52.675768 IP (tos 0xc0, ttl 1, id 16061, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:55:52.676549 IP (tos 0xc0, ttl 1, id 16364, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:56:02.677765 IP (tos 0xc0, ttl 1, id 16064, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:56:02.678639 IP (tos 0xc0, ttl 1, id 16368, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:56:12.679950 IP (tos 0xc0, ttl 1, id 16067, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:56:12.680524 IP (tos 0xc0, ttl 1, id 16372, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:56:22.681058 IP (tos 0xc0, ttl 1, id 16376, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:56:22.681181 IP (tos 0xc0, ttl 1, id 16070, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:56:32.682465 IP (tos 0xc0, ttl 1, id 16073, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:56:32.683255 IP (tos 0xc0, ttl 1, id 16380, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:56:42.685615 IP (tos 0xc0, ttl 1, id 16384, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:56:42.686106 IP (tos 0xc0, ttl 1, id 16076, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:56:52.684175 IP (tos 0xc0, ttl 1, id 16079, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:56:52.684204 IP (tos 0xc0, ttl 1, id 16388, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:57:02.685099 IP (tos 0xc0, ttl 1, id 16392, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:57:02.685222 IP (tos 0xc0, ttl 1, id 16082, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:57:12.688280 IP (tos 0xc0, ttl 1, id 16396, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:57:12.688506 IP (tos 0xc0, ttl 1, id 16085, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:57:22.686353 IP (tos 0xc0, ttl 1, id 16400, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:57:22.686538 IP (tos 0xc0, ttl 1, id 16088, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:57:32.687944 IP (tos 0xc0, ttl 1, id 16091, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:57:32.689167 IP (tos 0xc0, ttl 1, id 16404, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:57:42.690838 IP (tos 0xc0, ttl 1, id 16094, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:57:42.691676 IP (tos 0xc0, ttl 1, id 16408, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:57:52.689846 IP (tos 0xc0, ttl 1, id 16097, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:57:52.690709 IP (tos 0xc0, ttl 1, id 16412, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
+18:58:02.696205 IP (tos 0xc0, ttl 1, id 16100, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.33 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 4.4.4.4, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    5.5.5.5
+18:58:02.698956 IP (tos 0xc0, ttl 1, id 16416, offset 0, flags [none], proto OSPF (89), length 68)
+    172.16.77.34 > 224.0.0.5: OSPFv2, Hello, length 48
+	Router-ID 5.5.5.5, Backbone Area, Authentication Type: none (0)
+	Options [External]
+	  Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.252, Priority 1
+	  Designated Router 172.16.77.34, Backup Designated Router 172.16.77.33
+	  Neighbor List:
+	    4.4.4.4
