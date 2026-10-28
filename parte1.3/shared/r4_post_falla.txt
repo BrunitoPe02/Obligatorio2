@@ -1,0 +1,7 @@
+54: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+    link/ether 4a:01:31:a4:23:c2 brd ff:ff:ff:ff:ff:ff
+
+Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
+5.5.5.5           1 Full/DR         20m46s            34.137s 172.16.77.34    eth1:172.16.77.33                    0     0     0
+6.6.6.6           1 Full/DR         20m46s            34.136s 172.16.77.38    eth2:172.16.77.37                    0     0     0
+

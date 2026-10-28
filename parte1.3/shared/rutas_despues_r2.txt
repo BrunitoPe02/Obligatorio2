@@ -1,0 +1,45 @@
+8.8.8.0/24 nhid 14 via 172.16.77.9 dev eth0 proto ospf metric 20 
+172.16.77.8/30 dev eth0 proto kernel scope link src 172.16.77.10 
+172.16.77.12/30 nhid 20 proto ospf metric 20 
+	nexthop via 172.16.77.9 dev eth0 weight 1 
+	nexthop via 172.16.77.18 dev eth1 weight 1 
+172.16.77.16/30 dev eth1 proto kernel scope link src 172.16.77.17 
+172.16.77.20/30 nhid 28 via 172.16.77.26 dev eth3 proto ospf metric 20 
+172.16.77.24/30 dev eth3 proto kernel scope link src 172.16.77.25 
+172.16.77.28/30 nhid 27 proto ospf metric 20 
+	nexthop via 172.16.77.18 dev eth1 weight 1 
+	nexthop via 172.16.77.26 dev eth3 weight 1 
+172.16.77.32/30 nhid 29 via 172.16.77.26 dev eth3 proto ospf metric 20 
+172.16.77.36/30 nhid 28 via 172.16.77.26 dev eth3 proto ospf metric 20 
+172.16.77.40/30 nhid 28 via 172.16.77.26 dev eth3 proto ospf metric 20 
+203.0.113.0/27 nhid 19 via 172.16.77.18 dev eth1 proto ospf metric 20 
+203.0.113.32/28 nhid 28 via 172.16.77.26 dev eth3 proto ospf metric 20 
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIP, O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv4 unicast VRF default:
+O>* 8.8.8.0/24 [110/20] via 172.16.77.9, eth0, weight 1, 00:21:35
+O   172.16.77.8/30 [110/10] is directly connected, eth0, weight 1, 00:22:21
+C>* 172.16.77.8/30 is directly connected, eth0, weight 1, 00:22:21
+L>* 172.16.77.10/32 is directly connected, eth0, weight 1, 00:22:21
+O>* 172.16.77.12/30 [110/20] via 172.16.77.9, eth0, weight 1, 00:21:31
+  *                          via 172.16.77.18, eth1, weight 1, 00:21:31
+O   172.16.77.16/30 [110/10] is directly connected, eth1, weight 1, 00:21:36
+C>* 172.16.77.16/30 is directly connected, eth1, weight 1, 00:22:21
+L>* 172.16.77.17/32 is directly connected, eth1, weight 1, 00:22:21
+O>* 172.16.77.20/30 [110/30] via 172.16.77.26, eth3, weight 1, 00:01:59
+O   172.16.77.24/30 [110/10] is directly connected, eth3, weight 1, 00:22:21
+C>* 172.16.77.24/30 is directly connected, eth3, weight 1, 00:22:21
+L>* 172.16.77.25/32 is directly connected, eth3, weight 1, 00:22:21
+O>* 172.16.77.28/30 [110/20] via 172.16.77.18, eth1, weight 1, 00:21:31
+  *                          via 172.16.77.26, eth3, weight 1, 00:21:31
+O>  172.16.77.32/30 [110/20] via 172.16.77.22, eth2 inactive, weight 1, 00:01:59
+  *                          via 172.16.77.26, eth3, weight 1, 00:01:59
+O>* 172.16.77.36/30 [110/30] via 172.16.77.26, eth3, weight 1, 00:01:59
+O>* 172.16.77.40/30 [110/20] via 172.16.77.26, eth3, weight 1, 00:21:31
+O>* 203.0.113.0/27 [110/20] via 172.16.77.18, eth1, weight 1, 00:21:30
+O>* 203.0.113.32/28 [110/20] via 172.16.77.26, eth3, weight 1, 00:21:30
