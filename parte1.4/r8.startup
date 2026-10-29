@@ -1,5 +1,4 @@
 ip address add 172.16.77.50/30 dev eth0
 ip address add 172.16.77.54/30 dev eth1
 ip address add 203.0.113.65/28 dev eth2
-ip link set eth0 down        # L2 apagado para medir
 systemctl start frr
