@@ -1,0 +1,15 @@
+# Direcciones de las interfaces
+ip address add 192.168.77.2/30 dev eth0     # hacia r3
+ip address add 192.168.100.1/24 dev eth1    # LAN_A
+
+# IP pública de NAT del Cliente A (en la Parte 1 vive en el loopback)
+ip address add 203.0.113.1/32 dev lo
+
+# Ruta por defecto hacia r3
+ip route add default via 192.168.77.1
+
+# Activar el reenvío de paquetes
+sysctl -w net.ipv4.ip_forward=1
+
+# NAT: lo que viene de la LAN y sale hacia el ISP toma la IP pública
+iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth0 -j SNAT --to-source 203.0.113.1

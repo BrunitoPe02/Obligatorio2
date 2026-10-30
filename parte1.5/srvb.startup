@@ -1,0 +1,7 @@
+# Servidor web (HTTP) en la DMZ de B.
+ip addr add 203.0.113.34/28 dev eth0
+
+# Ruta por defecto hacia rclb (eth2)
+ip route add default via 203.0.113.33
+
+service apache2 start

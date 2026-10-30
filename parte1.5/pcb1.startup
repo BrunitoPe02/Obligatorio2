@@ -1,0 +1,5 @@
+# Mi dirección en eth0 es 10.77.0.10, y mi red es 10.77.0.0/25
+ip addr add 10.77.0.10/25 dev eth0 
+
+## Ruta por defecto (0.0.0.0/0): todo destino fuera de 10.77.0.0/25 se envía al gateway 10.77.0.1 (rclb eth1).
+ip route add default via 10.77.0.1

@@ -1,0 +1,6 @@
+systemctl start frr
+
+# direcciones ip
+ip addr add 172.16.77.22/30 dev eth0 #r2
+ip addr add 172.16.77.33/30 dev eth1 #r5
+ip addr add 172.16.77.37/30 dev eth2 #r6
