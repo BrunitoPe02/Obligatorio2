@@ -1,0 +1,62 @@
+===== r1
+eth1 is up
+  Router ID 1.1.1.1, Network Type BROADCAST, Cost: 10
+eth2 is up
+  Router ID 1.1.1.1, Network Type BROADCAST, Cost: 20
+lo is up
+  Router ID 1.1.1.1, Network Type LOOPBACK, Cost: 0
+===== r2
+eth0 is up
+  Router ID 2.2.2.2, Network Type BROADCAST, Cost: 10
+eth1 is up
+  Router ID 2.2.2.2, Network Type BROADCAST, Cost: 100
+eth2 is up
+  Router ID 2.2.2.2, Network Type BROADCAST, Cost: 10
+eth3 is up
+  Router ID 2.2.2.2, Network Type BROADCAST, Cost: 100
+===== r3
+eth0 is up
+  Router ID 3.3.3.3, Network Type BROADCAST, Cost: 20
+eth1 is up
+  Router ID 3.3.3.3, Network Type BROADCAST, Cost: 100
+eth2 is up
+  Router ID 3.3.3.3, Network Type BROADCAST, Cost: 20
+===== r4
+eth0 is up
+  Router ID 4.4.4.4, Network Type BROADCAST, Cost: 10
+eth1 is up
+  Router ID 4.4.4.4, Network Type BROADCAST, Cost: 100
+eth2 is up
+  Router ID 4.4.4.4, Network Type BROADCAST, Cost: 10
+===== r5
+eth0 is up
+  Router ID 5.5.5.5, Network Type BROADCAST, Cost: 100
+eth1 is up
+  Router ID 5.5.5.5, Network Type BROADCAST, Cost: 20
+eth2 is up
+  Router ID 5.5.5.5, Network Type BROADCAST, Cost: 100
+eth3 is up
+  Router ID 5.5.5.5, Network Type BROADCAST, Cost: 20
+eth5 is up
+  Router ID 5.5.5.5, Network Type BROADCAST, Cost: 100
+===== r6
+eth1 is up
+  Router ID 6.6.6.6, Network Type BROADCAST, Cost: 10
+eth2 is up
+  Router ID 6.6.6.6, Network Type BROADCAST, Cost: 20
+eth3 is up
+  Router ID 6.6.6.6, Network Type BROADCAST, Cost: 100
+lo is up
+  Router ID 6.6.6.6, Network Type LOOPBACK, Cost: 0
+===== r7
+eth0 is up
+  Router ID 7.7.7.7, Network Type BROADCAST, Cost: 100
+eth1 is up
+  Router ID 7.7.7.7, Network Type BROADCAST, Cost: 100
+===== r8
+eth0 is up
+  Router ID 8.8.8.8, Network Type BROADCAST, Cost: 100
+eth1 is up
+  Router ID 8.8.8.8, Network Type BROADCAST, Cost: 100
+eth2 is up
+  Router ID 8.8.8.8, Network Type BROADCAST, Cost: 10
