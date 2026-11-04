@@ -1,0 +1,11 @@
+ip link set dev eth0 address 02:00:00:FF:00:00
+ip link set dev eth1 address 02:00:00:FF:00:01
+ip link set dev eth2 address 02:00:00:FF:00:02
+ip link set dev eth3 address 02:00:00:FF:00:03
+
+
+ip addr add 10.77.0.1/23 dev eth2     # INVITADOS
+ip addr add 10.77.2.1/25 dev eth1     # DESARROLLO
+ip addr add 10.77.2.129/26 dev eth0   # ADMIN
+ip addr add 203.0.113.33/27 dev eth3  # SERVIDORES
+sysctl -w net.ipv4.ip_forward=1

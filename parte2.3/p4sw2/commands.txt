@@ -1,0 +1,8 @@
+table_add MyIngress.mac_fwd MyIngress.forward 02:00:00:FF:00:01 => 1
+table_add MyIngress.mac_fwd MyIngress.forward 02:00:00:02:00:01 => 2
+table_add MyIngress.mac_fwd MyIngress.forward 02:00:00:02:00:02 => 3
+table_add MyIngress.mac_fwd MyIngress.forward 02:00:00:02:00:03 => 4
+table_add MyIngress.mac_fwd MyIngress.broadcast ff:ff:ff:ff:ff:ff =>
+mc_mgrp_create 1
+mc_node_create 0 1 2 3 4
+mc_node_associate 1 0
