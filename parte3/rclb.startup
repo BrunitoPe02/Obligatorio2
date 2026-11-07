@@ -1,0 +1,13 @@
+# Direcciones de las tres interfaces
+ip address add 192.168.77.6/30 dev eth0
+ip address add 10.77.0.1/25 dev eth1
+ip address add 203.0.113.33/28 dev eth2
+
+# Ruta por defecto hacia r5
+ip route add default via 192.168.77.5
+
+# Activar el reenvío de paquetes
+sysctl -w net.ipv4.ip_forward=1
+
+# NAT: lo que viene de la LAN y sale hacia el ISP toma la IP pública
+iptables -t nat -A POSTROUTING -s 10.77.0.0/25 -o eth0 -j SNAT --to-source 203.0.113.33

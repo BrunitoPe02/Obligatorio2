@@ -1,0 +1,9 @@
+PING 10.77.0.1 (10.77.0.1) 56(84) bytes of data.
+64 bytes from 10.77.0.1: icmp_seq=1 ttl=64 time=1.18 ms
+64 bytes from 10.77.0.1: icmp_seq=2 ttl=64 time=2.67 ms
+64 bytes from 10.77.0.1: icmp_seq=3 ttl=64 time=4.21 ms
+
+--- 10.77.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2005ms
+rtt min/avg/max/mdev = 1.184/2.687/4.206/1.233 ms
+RESULTADO=OK

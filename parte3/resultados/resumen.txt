@@ -1,0 +1,42 @@
+Parte 3 - Resultados de la matriz de pruebas
+Fecha: 2026-11-06 20:55:01
+
+ID   ORIGEN     MODO   DESTINO        ESPERADO  OBSERVADO       DESCRIPCION
+--------------------------------------------------------------------------------------------------------------
+01   pc_admin1  ping   8.8.8.8        OK        OK        PASA  A(ADMIN) a Internet con NAT
+02   pc_dev1    ping   8.8.8.8        OK        OK        PASA  A(DEV) a Internet con NAT
+03   pc_guest1  ping   8.8.8.8        FALLA     FALLA     PASA  Invitado a Internet: bloqueado por P4
+04a  pcb1       ping   8.8.8.8        OK        OK        PASA  B a Internet con NAT
+04b  pcb2       ping   8.8.8.8        OK        OK        PASA  B a Internet con NAT
+04c  pcb3       ping   8.8.8.8        OK        OK        PASA  B a Internet con NAT
+05   srv1       ping   8.8.8.8        OK        OK        PASA  srv1 a Internet sin NAT (ruta nueva en rint)
+06   pcint      ping   10.77.2.130    FALLA     FALLA     PASA  Privada de A inalcanzable desde Internet
+07a  pcint      http   203.0.113.98   OK        OK        PASA  Internet a srv1 HTTP
+07b  pcint      https  203.0.113.98   OK        OK        PASA  Internet a srv1 HTTPS
+08a  pcint      http   203.0.113.34   OK        OK        PASA  Internet a srvB
+08b  pcint      http   203.0.113.35   OK        OK        PASA  Internet a srvb2
+09   pcb1       http   203.0.113.98   OK        OK        PASA  Cliente B a servidor de A
+10   pc_admin1  http   203.0.113.34   OK        OK        PASA  Cliente A a servidor de B
+11a  pcc        http   203.0.113.98   OK        OK        PASA  POP nuevo (r8) a srv1
+11b  pcc        http   203.0.113.34   OK        OK        PASA  POP nuevo (r8) a srvB
+12   pc_admin1  ping   10.77.0.10     FALLA     FALLA     PASA  Privada de B no alcanzable (solapamiento + NAT)
+13   pc_admin1  ping   10.77.2.2      OK        OK        PASA  ADMIN a DEV (ruteo en rcla)
+14a  pc_admin1  ping   203.0.113.98   OK        OK        PASA  ADMIN a srv1 ICMP
+14b  pc_admin1  http   203.0.113.98   OK        OK        PASA  ADMIN a srv1 HTTP
+15   pc_guest1  ping   10.77.0.1      OK        OK        PASA  Invitado al gateway
+16a  pc_guest1  http   203.0.113.98   OK        OK        PASA  Invitado a srv1:80
+16b  pc_guest1  https  203.0.113.98   OK        OK        PASA  Invitado a srv1:443
+17   pc_guest1  ping   203.0.113.98   FALLA     FALLA     PASA  Invitado a srv1 ICMP: bloqueado
+18   pc_guest1  http   203.0.113.34   FALLA     FALLA     PASA  Invitado a srvB: bloqueado
+19   pc_admin1  ping   10.77.0.2      FALLA     FALLA     PASA  ADMIN a invitado: reply descartado (stateless)
+20   pc_admin4  ping   10.77.2.129    FALLA     FALLA     PASA  pc_admin4 no registrado: port security
+21a  pcb1       ping   10.77.0.11     OK        OK        PASA  LAN B interna
+21b  pcb1       ping   10.77.0.12     OK        OK        PASA  LAN B interna
+22a  pcb1       http   203.0.113.34   OK        OK        PASA  LAN B a DMZ (srvB)
+22b  pcb1       http   203.0.113.35   OK        OK        PASA  LAN B a DMZ (srvb2)
+
+Coinciden con lo esperado: 31 / 31
+
+Contadores P4 de p4sw3 (guest_policy_cnt) durante las pruebas:
+  permitidos:  ? -> ?  (delta 0)
+  descartados: ? -> ?  (delta 0)

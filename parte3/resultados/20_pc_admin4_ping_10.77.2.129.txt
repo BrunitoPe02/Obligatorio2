@@ -1,0 +1,6 @@
+PING 10.77.2.129 (10.77.2.129) 56(84) bytes of data.
+
+--- 10.77.2.129 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2086ms
+
+RESULTADO=FALLA

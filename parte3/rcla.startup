@@ -1,0 +1,26 @@
+# rcla: gateway del Cliente A (Parte 2) + enlace al ISP (Parte 1).
+# eth0..eth3 quedan IGUAL que en la Parte 2: los switches P4 tienen
+# estas MACs registradas en mac_fwd y port_security.
+ip link set dev eth0 address 02:00:00:FF:00:00
+ip link set dev eth1 address 02:00:00:FF:00:01
+ip link set dev eth2 address 02:00:00:FF:00:02
+ip link set dev eth3 address 02:00:00:FF:00:03
+
+# LANs internas
+ip addr add 10.77.2.129/26 dev eth0     # ADMIN
+ip addr add 10.77.2.1/25 dev eth1       # DESARROLLO
+ip addr add 10.77.0.1/23 dev eth2       # INVITADOS
+ip addr add 203.0.113.97/27 dev eth3    # SERVIDORES (publica, sin NAT)
+
+# Enlace al ISP (era eth0 en la Parte 1; ahora es eth4)
+ip addr add 192.168.77.2/30 dev eth4
+ip route add default via 192.168.77.1
+
+# IP publica de NAT del Cliente A
+ip addr add 203.0.113.1/32 dev lo
+
+sysctl -w net.ipv4.ip_forward=1
+
+# NAT: las tres LANs privadas (10.77.0.0/16) salen al ISP como 203.0.113.1.
+# Los servidores (203.0.113.96/27) no se traducen: ya son publicos.
+iptables -t nat -A POSTROUTING -s 10.77.0.0/16 -o eth4 -j SNAT --to-source 203.0.113.1

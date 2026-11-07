@@ -1,0 +1,6 @@
+# Segundo servidor web (HTTP) en la DMZ de B (203.0.113.32/28: hay lugar hasta .46).
+ip addr add 203.0.113.35/28 dev eth0
+ip route add default via 203.0.113.33
+
+echo "srvb2 - Cliente B (203.0.113.35)" > /var/www/html/index.html
+service apache2 start

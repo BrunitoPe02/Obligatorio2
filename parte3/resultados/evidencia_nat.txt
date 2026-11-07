@@ -1,0 +1,12 @@
+=== rcla
+Chain POSTROUTING (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 DOCKER_POSTROUTING  0    --  *      *       0.0.0.0/0            127.0.0.11          
+   22  1368 SNAT       0    --  *      eth4    10.77.0.0/16         0.0.0.0/0            to:203.0.113.1
+RESULTADO=OK
+=== rclb
+Chain POSTROUTING (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 DOCKER_POSTROUTING  0    --  *      *       0.0.0.0/0            127.0.0.11          
+   23  1452 SNAT       0    --  *      eth0    10.77.0.0/25         0.0.0.0/0            to:203.0.113.33
+RESULTADO=OK

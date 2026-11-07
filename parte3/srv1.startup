@@ -1,0 +1,14 @@
+# srv1: servidor web del Cliente A, HTTP (80) y HTTPS (443) con certificado autofirmado.
+openssl req -x509 -nodes -newkey rsa:2048 -days 365 -subj "/CN=srv1" \
+    -keyout /etc/ssl/private/ssl-cert-snakeoil.key \
+    -out /etc/ssl/certs/ssl-cert-snakeoil.pem > /dev/null 2>&1
+a2enmod ssl > /dev/null
+a2ensite default-ssl > /dev/null
+echo "srv1 - Cliente A (203.0.113.98)" > /var/www/html/index.html
+service apache2 start
+
+ip link set dev eth0 address 02:00:00:04:00:01
+
+# Parte 3: se mueve a 203.0.113.96/27 (en la Parte 2 chocaba con la DMZ de B)
+ip addr add 203.0.113.98/27 dev eth0
+ip route add default via 203.0.113.97

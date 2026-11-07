@@ -1,0 +1,2 @@
+srvb2 - Cliente B (203.0.113.35)
+RESULTADO=OK

@@ -1,0 +1,10 @@
+table_add MyIngress.mac_fwd MyIngress.forward 02:00:00:FF:00:03 => 1
+table_add MyIngress.mac_fwd MyIngress.forward 02:00:00:04:00:01 => 2
+table_add MyIngress.mac_fwd MyIngress.broadcast ff:ff:ff:ff:ff:ff =>
+mc_mgrp_create 1
+mc_node_create 0 1 2
+mc_node_associate 1 0
+
+# 2.4 Port security: pares (puerto, MAC origen) autorizados
+table_add MyIngress.port_security MyIngress.portsec_ok 1 02:00:00:FF:00:03 =>
+table_add MyIngress.port_security MyIngress.portsec_ok 2 02:00:00:04:00:01 =>
