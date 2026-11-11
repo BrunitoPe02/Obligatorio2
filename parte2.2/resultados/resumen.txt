@@ -1,0 +1,82 @@
+Parte 2.2 - Plan de pruebas del switch P4
+Fecha: 2026-11-10 19:24:30
+
+== P1a: ADMIN: pc_admin1 -> pc_admin2 (unicast + ARP)
+  [PASA] ping pc_admin1 -> 10.77.2.131: OK (0% packet loss)
+  [PASA] unknown_drop_cnt = 0 (esperado -eq 0)
+  [PASA] regla broadcast (mac_fwd_cnt[4]) = 1 (esperado -ge 1)
+
+== P1b: ADMIN: pc_admin1 -> pc_admin3
+  [PASA] ping pc_admin1 -> 10.77.2.132: OK (0% packet loss)
+  [PASA] unknown_drop_cnt = 0 (esperado -eq 0)
+
+== P1c: ADMIN: pc_admin2 -> pc_admin3
+  [PASA] ping pc_admin2 -> 10.77.2.132: OK (0% packet loss)
+  [PASA] unknown_drop_cnt = 0 (esperado -eq 0)
+
+== P2: Broadcast: copia al puerto de entrada descartada (ARP a IP libre)
+  [PASA] ping pc_admin1 -> 10.77.2.150: FALLA (100% packet loss)
+  [PASA] ARP requests de admin1 (port_in_cnt[2]) = 3 (esperado -ge 1)
+  [PASA] copias devueltas a admin1 (port_out_cnt[2]) = 0 (esperado -eq 0)
+  [PASA] copias a rcla (port_out_cnt[1]) = 3 (esperado -eq 3)
+  [PASA] copias a admin2 (port_out_cnt[3]) = 3 (esperado -eq 3)
+  [PASA] copias a admin3 (port_out_cnt[4]) = 3 (esperado -eq 3)
+  [PASA] copias a admin4 no registrado (port_out_cnt[5]) = 0 (esperado -eq 0)
+
+== P3: ADMIN: pc_admin1 -> gateway rcla eth0
+  [PASA] ping pc_admin1 -> 10.77.2.129: OK (0% packet loss)
+  [PASA] regla rcla (mac_fwd_cnt[0]) = 5 (esperado -ge 4)
+
+== P4a: DESARROLLO (p4sw2): pc_dev1 -> pc_dev2
+  [PASA] ping pc_dev1 -> 10.77.2.3: OK (0% packet loss)
+  [PASA] unknown_drop_cnt = 0 (esperado -eq 0)
+
+== P4b: INVITADOS (p4sw3): pc_guest1 -> pc_guest2
+  [PASA] ping pc_guest1 -> 10.77.0.3: OK (0% packet loss)
+  [PASA] unknown_drop_cnt = 0 (esperado -eq 0)
+
+== P4c: SERVIDORES (p4sw4): srv1 -> gateway rcla eth3
+  [PASA] ping srv1 -> 203.0.113.33: OK (0% packet loss)
+  [PASA] unknown_drop_cnt = 0 (esperado -eq 0)
+
+== P5: Entre subredes: pc_admin1 -> pc_dev1 (via rcla)
+  [PASA] ping pc_admin1 -> 10.77.2.2: OK (0% packet loss)
+  [PASA] pc_dev1 recibe con TTL 63 (un salto L3 en rcla)
+
+== P6: Unicast desconocido: pc_admin1 -> MAC 02:00:00:01:00:99 (no instalada)
+  [PASA] ping pc_admin1 -> 10.77.2.140: FALLA (100% packet loss)
+  [PASA] unknown_drop_cnt (uno por echo request) = 4 (esperado -eq 4)
+  [PASA] regla broadcast (sin ARP) = 0 (esperado -eq 0)
+  [PASA] tramas enviadas por el puerto 1 = 0 (esperado -eq 0)
+  [PASA] tramas enviadas por el puerto 3 = 0 (esperado -eq 0)
+  [PASA] tramas enviadas por el puerto 4 = 0 (esperado -eq 0)
+  [PASA] tramas enviadas por el puerto 5 = 0 (esperado -eq 0)
+
+== R_a: Reflexion a) host registrado -> host nuevo: pc_admin1 -> pc_admin4
+  [PASA] ping pc_admin1 -> 10.77.2.133: FALLA (100% packet loss)
+  [PASA] ping informa Destination Host Unreachable (ARP sin respuesta)
+  [PASA] regla broadcast (ARP requests replicados) = 6 (esperado -ge 1)
+  [PASA] tramas entregadas a pc_admin4 (port_out_cnt[5]) = 0 (esperado -eq 0)
+  [PASA] unknown_drop_cnt (admin1 nunca llega a mandar unicast) = 0 (esperado -eq 0)
+
+== R_b: Reflexion b) host nuevo -> host registrado: pc_admin4 -> pc_admin1
+  [PASA] ping pc_admin4 -> 10.77.2.130: FALLA (100% packet loss)
+  [PASA] ARP requests de admin4 recibidos (port_in_cnt[5]) = 6 (esperado -ge 1)
+  [PASA] copias del broadcast entregadas a admin1 (port_out_cnt[2]) = 6 (esperado -ge 1)
+  [PASA] replies de admin1 descartados (unknown_drop_cnt) = 6 (esperado -ge 1)
+  [PASA] tramas entregadas a pc_admin4 (port_out_cnt[5]) = 0 (esperado -eq 0)
+
+== R_c: alta de pc_admin4 en p4sw1 (table_add + mc_node_update)
+  Entry has been added with handle 16777221
+
+== R_c1: Recuperacion: pc_admin1 -> pc_admin4
+  [PASA] ping pc_admin1 -> 10.77.2.133: OK (0% packet loss)
+  [PASA] regla nueva de admin4 (mac_fwd_cnt[5]) = 5 (esperado -ge 4)
+  [PASA] unknown_drop_cnt = 0 (esperado -eq 0)
+
+== R_c2: Recuperacion: pc_admin4 -> pc_admin1
+  [PASA] ping pc_admin4 -> 10.77.2.130: OK (0% packet loss)
+  [PASA] unknown_drop_cnt = 0 (esperado -eq 0)
+
+========================================
+Verificaciones que coinciden con lo esperado: 46 / 46

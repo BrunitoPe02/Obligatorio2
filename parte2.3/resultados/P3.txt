@@ -1,0 +1,34 @@
+### P3 - guest1: ping al gateway 10.77.0.1
+
+### pc_guest1: ping 10.77.0.1 3
+PING 10.77.0.1 (10.77.0.1) 56(84) bytes of data.
+64 bytes from 10.77.0.1: icmp_seq=1 ttl=64 time=2.67 ms
+64 bytes from 10.77.0.1: icmp_seq=2 ttl=64 time=3.16 ms
+64 bytes from 10.77.0.1: icmp_seq=3 ttl=64 time=2.69 ms
+
+--- 10.77.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2014ms
+rtt min/avg/max/mdev = 2.672/2.838/3.156/0.224 ms
+
+### Contadores de p4sw3 (en cero al empezar la prueba)
+MyIngress.port_in_cnt[1] pkts=4 bytes=354
+MyIngress.port_in_cnt[2] pkts=4 bytes=354
+MyIngress.port_in_cnt[3] pkts=0 bytes=0
+MyIngress.port_in_cnt[4] pkts=0 bytes=0
+MyEgress.port_out_cnt[1] pkts=4 bytes=354
+MyEgress.port_out_cnt[2] pkts=4 bytes=354
+MyEgress.port_out_cnt[3] pkts=1 bytes=60
+MyEgress.port_out_cnt[4] pkts=1 bytes=60
+MyIngress.mac_fwd_cnt[0] pkts=3 bytes=294
+MyIngress.mac_fwd_cnt[1] pkts=4 bytes=354
+MyIngress.mac_fwd_cnt[2] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[3] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[4] pkts=1 bytes=60
+MyIngress.unknown_drop_cnt[0] pkts=0 bytes=0
+MyIngress.guest_policy_cnt[0] pkts=4 bytes=354
+MyIngress.guest_policy_cnt[1] pkts=0 bytes=0
+MyIngress.guest_acl_cnt[0] pkts=1 bytes=60
+MyIngress.guest_acl_cnt[1] pkts=3 bytes=294
+MyIngress.guest_acl_cnt[2] pkts=0 bytes=0
+MyIngress.guest_acl_cnt[3] pkts=0 bytes=0
+RESULTADO=OK

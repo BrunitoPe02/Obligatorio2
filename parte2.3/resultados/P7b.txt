@@ -1,0 +1,43 @@
+### P7b - dev1: ping a srv1 y a admin1
+
+### pc_dev1: ping 203.0.113.34 3
+PING 203.0.113.34 (203.0.113.34) 56(84) bytes of data.
+64 bytes from 203.0.113.34: icmp_seq=1 ttl=63 time=3.50 ms
+64 bytes from 203.0.113.34: icmp_seq=2 ttl=63 time=5.18 ms
+64 bytes from 203.0.113.34: icmp_seq=3 ttl=63 time=5.99 ms
+
+--- 203.0.113.34 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2010ms
+rtt min/avg/max/mdev = 3.502/4.891/5.994/1.037 ms
+
+### pc_dev1: ping 10.77.2.130 3
+PING 10.77.2.130 (10.77.2.130) 56(84) bytes of data.
+64 bytes from 10.77.2.130: icmp_seq=1 ttl=63 time=2.14 ms
+64 bytes from 10.77.2.130: icmp_seq=2 ttl=63 time=4.70 ms
+64 bytes from 10.77.2.130: icmp_seq=3 ttl=63 time=9.81 ms
+
+--- 10.77.2.130 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2010ms
+rtt min/avg/max/mdev = 2.137/5.546/9.806/3.188 ms
+
+### pc_dev1: curl https://203.0.113.34/
+curl https://203.0.113.34/ -> HTTP 200
+
+### Contadores de p4sw2 (en cero al empezar la prueba)
+MyIngress.port_in_cnt[1] pkts=24 bytes=14296
+MyIngress.port_in_cnt[2] pkts=24 bytes=2473
+MyIngress.port_in_cnt[3] pkts=0 bytes=0
+MyIngress.port_in_cnt[4] pkts=0 bytes=0
+MyEgress.port_out_cnt[1] pkts=24 bytes=2473
+MyEgress.port_out_cnt[2] pkts=24 bytes=14296
+MyEgress.port_out_cnt[3] pkts=1 bytes=60
+MyEgress.port_out_cnt[4] pkts=1 bytes=60
+MyIngress.mac_fwd_cnt[0] pkts=23 bytes=2413
+MyIngress.mac_fwd_cnt[1] pkts=24 bytes=14296
+MyIngress.mac_fwd_cnt[2] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[3] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[4] pkts=1 bytes=60
+MyIngress.unknown_drop_cnt[0] pkts=0 bytes=0
+MyIngress.guest_policy_cnt[0] pkts=0 bytes=0
+MyIngress.guest_policy_cnt[1] pkts=0 bytes=0
+RESULTADO=OK

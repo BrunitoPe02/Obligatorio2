@@ -1,0 +1,304 @@
+### R1 - guest1: curl HTTP a srv1 (permitido) + ping a srv1 (bloqueado)
+
+### pc_guest1: curl http://203.0.113.34/
+curl http://203.0.113.34/ -> HTTP 200
+
+### pc_guest1: ping 203.0.113.34 3
+PING 203.0.113.34 (203.0.113.34) 56(84) bytes of data.
+
+--- 203.0.113.34 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2057ms
+
+
+### Contadores de p4sw3 (en cero al empezar la prueba)
+MyIngress.port_in_cnt[1] pkts=13 bytes=11810
+MyIngress.port_in_cnt[2] pkts=18 bytes=1356
+MyIngress.port_in_cnt[3] pkts=0 bytes=0
+MyIngress.port_in_cnt[4] pkts=0 bytes=0
+MyEgress.port_out_cnt[1] pkts=15 bytes=1062
+MyEgress.port_out_cnt[2] pkts=13 bytes=11810
+MyEgress.port_out_cnt[3] pkts=1 bytes=60
+MyEgress.port_out_cnt[4] pkts=1 bytes=60
+MyIngress.mac_fwd_cnt[0] pkts=14 bytes=1002
+MyIngress.mac_fwd_cnt[1] pkts=13 bytes=11810
+MyIngress.mac_fwd_cnt[2] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[3] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[4] pkts=1 bytes=60
+MyIngress.unknown_drop_cnt[0] pkts=0 bytes=0
+MyIngress.guest_policy_cnt[0] pkts=15 bytes=1062
+MyIngress.guest_policy_cnt[1] pkts=3 bytes=294
+MyIngress.guest_acl_cnt[0] pkts=2 bytes=120
+MyIngress.guest_acl_cnt[1] pkts=0 bytes=0
+MyIngress.guest_acl_cnt[2] pkts=13 bytes=942
+MyIngress.guest_acl_cnt[3] pkts=0 bytes=0
+RESULTADO=OK
+
+### Captura p23_r1_sw3_eth1_guest1.pcap (p4sw3 eth1)
+22:58:43.324125 02:00:00:03:00:01 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.0.1 tell 10.77.0.2, length 46
+22:58:43.325195 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Reply 10.77.0.1 is-at 02:00:00:ff:00:02, length 46
+22:58:43.325452 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 74: (tos 0x0, ttl 64, id 37554, offset 0, flags [DF], proto TCP (6), length 60)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [S], cksum 0x9c8e (correct), seq 716063881, win 64240, options [mss 1460,sackOK,TS val 3837409817 ecr 0,nop,wscale 10], length 0
+22:58:43.327814 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 74: (tos 0x0, ttl 63, id 0, offset 0, flags [DF], proto TCP (6), length 60)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [S.], cksum 0xeea7 (correct), seq 1533332874, ack 716063882, win 65160, options [mss 1460,sackOK,TS val 751260807 ecr 3837409817,nop,wscale 10], length 0
+22:58:43.328087 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37555, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0x1bbe (correct), ack 1, win 63, options [nop,nop,TS val 3837409820 ecr 751260807], length 0
+22:58:43.328290 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 142: (tos 0x0, ttl 64, id 37556, offset 0, flags [DF], proto TCP (6), length 128)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [P.], cksum 0xd43e (correct), seq 1:77, ack 1, win 63, options [nop,nop,TS val 3837409821 ecr 751260807], length 76: HTTP, length: 76
+	GET / HTTP/1.1
+	Host: 203.0.113.34
+	User-Agent: curl/7.88.1
+	Accept: */*
+	
+22:58:43.329816 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 63, id 51247, offset 0, flags [DF], proto TCP (6), length 52)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0x1b6e (correct), ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 0
+22:58:43.330179 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51248, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0x68fb (correct), seq 1:1449, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP, length: 1448
+	HTTP/1.1 200 OK
+	Date: Tue, 10 Nov 2026 22:58:43 GMT
+	Server: Apache/2.4.66 (Debian)
+	Last-Modified: Sun, 22 Mar 2026 19:59:34 GMT
+	ETag: "29cd-64da25b6a5580"
+	Accept-Ranges: bytes
+	Content-Length: 10701
+	Vary: Accept-Encoding
+	Content-Type: text/html
+	
+	
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml">
+	  <head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <title>Apache2 Debian Default Page: It works</title>
+	    <style type="text/css" media="screen">
+	  * {
+	    margin: 0px 0px 0px 0px;
+	    padding: 0px 0px 0px 0px;
+	  }
+	
+	  body, html {
+	    padding: 3px 3px 3px 3px;
+	
+	    background-color: #D8DBE2;
+	
+	    font-family: Verdana, sans-serif;
+	    font-size: 11pt;
+	    text-align: center;
+	  }
+	
+	  div.main_page {
+	    position: relative;
+	    display: table;
+	
+	    width: 800px;
+	
+	    margin-bottom: 3px;
+	    margin-left: auto;
+	    margin-right: auto;
+	    padding: 0px 0px 0px 0px;
+	
+	    border-width: 2px;
+	    border-color: #212738;
+	    border-style: solid;
+	
+	    background-color: #FFFFFF;
+	
+	    text-align: center;
+	  }
+	
+	  div.page_header {
+	    height: 99px;
+	    width: 100%;
+	
+	    background-color: #F5F6F7;
+	  }
+	
+	  div.page_header span {
+	    margin: 15px 0px 0px 50px;
+	
+	    font-size: 180%;
+	    font-weight: bold;
+	  }
+	
+	  div.page_header img {
+	    margin: 3px 0px 0px 40px;
+	
+	    border: 0px 0px 0px;
+	  }
+	
+	  d [|http]
+22:58:43.330231 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51249, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0x77b8 (correct), seq 1449:2897, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP
+22:58:43.330564 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51250, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0xacb3 (correct), seq 2897:4345, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP
+22:58:43.330700 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37557, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0x15c2 (correct), ack 1449, win 66, options [nop,nop,TS val 3837409823 ecr 751260809], length 0
+22:58:43.330922 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51251, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0x981b (correct), seq 4345:5793, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP
+22:58:43.331038 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51252, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [P.], cksum 0xd7ea (correct), seq 5793:7241, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP
+22:58:43.331236 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37558, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0x1016 (correct), ack 2897, win 69, options [nop,nop,TS val 3837409824 ecr 751260809], length 0
+22:58:43.331315 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51253, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0x66a3 (correct), seq 7241:8689, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP
+22:58:43.331447 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51254, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0x5c66 (correct), seq 8689:10137, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP
+22:58:43.331634 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37559, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0x0a6b (correct), ack 4345, win 72, options [nop,nop,TS val 3837409824 ecr 751260809], length 0
+22:58:43.331990 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 886: (tos 0x0, ttl 63, id 51255, offset 0, flags [DF], proto TCP (6), length 872)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [P.], cksum 0x0fe5 (correct), seq 10137:10957, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 820: HTTP
+22:58:43.332015 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37560, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0x04c0 (correct), ack 5793, win 75, options [nop,nop,TS val 3837409824 ecr 751260809], length 0
+22:58:43.332387 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37561, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0xff14 (correct), ack 7241, win 78, options [nop,nop,TS val 3837409824 ecr 751260809], length 0
+22:58:43.332799 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37562, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0xf96a (correct), ack 8689, win 79, options [nop,nop,TS val 3837409825 ecr 751260809], length 0
+22:58:43.333007 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37563, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0xf3c3 (correct), ack 10137, win 78, options [nop,nop,TS val 3837409825 ecr 751260809], length 0
+22:58:43.333209 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37564, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0xf08f (correct), ack 10957, win 78, options [nop,nop,TS val 3837409825 ecr 751260809], length 0
+22:58:43.333397 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37565, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [F.], cksum 0xf08d (correct), seq 77, ack 10957, win 79, options [nop,nop,TS val 3837409825 ecr 751260809], length 0
+22:58:43.335878 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 63, id 51256, offset 0, flags [DF], proto TCP (6), length 52)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [F.], cksum 0xf095 (correct), seq 10957, ack 78, win 64, options [nop,nop,TS val 751260815 ecr 3837409825], length 0
+22:58:43.336164 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37566, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0xf082 (correct), ack 10958, win 79, options [nop,nop,TS val 3837409829 ecr 751260815], length 0
+22:58:43.777593 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 12272, offset 0, flags [DF], proto ICMP (1), length 84)
+    10.77.0.2 > 203.0.113.34: ICMP echo request, id 52454, seq 1, length 64
+22:58:44.810673 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 13056, offset 0, flags [DF], proto ICMP (1), length 84)
+    10.77.0.2 > 203.0.113.34: ICMP echo request, id 52454, seq 2, length 64
+22:58:45.834654 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 14074, offset 0, flags [DF], proto ICMP (1), length 84)
+    10.77.0.2 > 203.0.113.34: ICMP echo request, id 52454, seq 3, length 64
+22:58:48.331128 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.0.2 tell 10.77.0.1, length 46
+22:58:48.331993 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Reply 10.77.0.2 is-at 02:00:00:03:00:01, length 46
+
+### Captura p23_r1_sw3_eth0_rcla.pcap (p4sw3 eth0)
+22:58:43.324655 02:00:00:03:00:01 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.0.1 tell 10.77.0.2, length 46
+22:58:43.325001 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Reply 10.77.0.1 is-at 02:00:00:ff:00:02, length 46
+22:58:43.325637 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 74: (tos 0x0, ttl 64, id 37554, offset 0, flags [DF], proto TCP (6), length 60)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [S], cksum 0x9c8e (correct), seq 716063881, win 64240, options [mss 1460,sackOK,TS val 3837409817 ecr 0,nop,wscale 10], length 0
+22:58:43.327639 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 74: (tos 0x0, ttl 63, id 0, offset 0, flags [DF], proto TCP (6), length 60)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [S.], cksum 0xeea7 (correct), seq 1533332874, ack 716063882, win 65160, options [mss 1460,sackOK,TS val 751260807 ecr 3837409817,nop,wscale 10], length 0
+22:58:43.328266 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37555, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0x1bbe (correct), ack 1, win 63, options [nop,nop,TS val 3837409820 ecr 751260807], length 0
+22:58:43.328513 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 142: (tos 0x0, ttl 64, id 37556, offset 0, flags [DF], proto TCP (6), length 128)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [P.], cksum 0xd43e (correct), seq 1:77, ack 1, win 63, options [nop,nop,TS val 3837409821 ecr 751260807], length 76: HTTP, length: 76
+	GET / HTTP/1.1
+	Host: 203.0.113.34
+	User-Agent: curl/7.88.1
+	Accept: */*
+	
+22:58:43.329479 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 63, id 51247, offset 0, flags [DF], proto TCP (6), length 52)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0x1b6e (correct), ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 0
+22:58:43.329948 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51248, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0x68fb (correct), seq 1:1449, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP, length: 1448
+	HTTP/1.1 200 OK
+	Date: Tue, 10 Nov 2026 22:58:43 GMT
+	Server: Apache/2.4.66 (Debian)
+	Last-Modified: Sun, 22 Mar 2026 19:59:34 GMT
+	ETag: "29cd-64da25b6a5580"
+	Accept-Ranges: bytes
+	Content-Length: 10701
+	Vary: Accept-Encoding
+	Content-Type: text/html
+	
+	
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml">
+	  <head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <title>Apache2 Debian Default Page: It works</title>
+	    <style type="text/css" media="screen">
+	  * {
+	    margin: 0px 0px 0px 0px;
+	    padding: 0px 0px 0px 0px;
+	  }
+	
+	  body, html {
+	    padding: 3px 3px 3px 3px;
+	
+	    background-color: #D8DBE2;
+	
+	    font-family: Verdana, sans-serif;
+	    font-size: 11pt;
+	    text-align: center;
+	  }
+	
+	  div.main_page {
+	    position: relative;
+	    display: table;
+	
+	    width: 800px;
+	
+	    margin-bottom: 3px;
+	    margin-left: auto;
+	    margin-right: auto;
+	    padding: 0px 0px 0px 0px;
+	
+	    border-width: 2px;
+	    border-color: #212738;
+	    border-style: solid;
+	
+	    background-color: #FFFFFF;
+	
+	    text-align: center;
+	  }
+	
+	  div.page_header {
+	    height: 99px;
+	    width: 100%;
+	
+	    background-color: #F5F6F7;
+	  }
+	
+	  div.page_header span {
+	    margin: 15px 0px 0px 50px;
+	
+	    font-size: 180%;
+	    font-weight: bold;
+	  }
+	
+	  div.page_header img {
+	    margin: 3px 0px 0px 40px;
+	
+	    border: 0px 0px 0px;
+	  }
+	
+	  d [|http]
+22:58:43.329994 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51249, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0x77b8 (correct), seq 1449:2897, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP
+22:58:43.330318 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51250, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0xacb3 (correct), seq 2897:4345, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP
+22:58:43.330646 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51251, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0x981b (correct), seq 4345:5793, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP
+22:58:43.330693 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51252, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [P.], cksum 0xd7ea (correct), seq 5793:7241, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP
+22:58:43.330990 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51253, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0x66a3 (correct), seq 7241:8689, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP
+22:58:43.331214 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 1514: (tos 0x0, ttl 63, id 51254, offset 0, flags [DF], proto TCP (6), length 1500)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [.], cksum 0x5c66 (correct), seq 8689:10137, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 1448: HTTP
+22:58:43.331234 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37557, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0x15c2 (correct), ack 1449, win 66, options [nop,nop,TS val 3837409823 ecr 751260809], length 0
+22:58:43.331502 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37558, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0x1016 (correct), ack 2897, win 69, options [nop,nop,TS val 3837409824 ecr 751260809], length 0
+22:58:43.331758 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 886: (tos 0x0, ttl 63, id 51255, offset 0, flags [DF], proto TCP (6), length 872)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [P.], cksum 0x0fe5 (correct), seq 10137:10957, ack 77, win 64, options [nop,nop,TS val 751260809 ecr 3837409821], length 820: HTTP
+22:58:43.331889 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37559, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0x0a6b (correct), ack 4345, win 72, options [nop,nop,TS val 3837409824 ecr 751260809], length 0
+22:58:43.332304 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37560, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0x04c0 (correct), ack 5793, win 75, options [nop,nop,TS val 3837409824 ecr 751260809], length 0
+22:58:43.332690 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37561, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0xff14 (correct), ack 7241, win 78, options [nop,nop,TS val 3837409824 ecr 751260809], length 0
+22:58:43.333188 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37562, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0xf96a (correct), ack 8689, win 79, options [nop,nop,TS val 3837409825 ecr 751260809], length 0
+22:58:43.333309 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37563, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0xf3c3 (correct), ack 10137, win 78, options [nop,nop,TS val 3837409825 ecr 751260809], length 0
+22:58:43.333487 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37564, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0xf08f (correct), ack 10957, win 78, options [nop,nop,TS val 3837409825 ecr 751260809], length 0
+22:58:43.333758 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37565, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [F.], cksum 0xf08d (correct), seq 77, ack 10957, win 79, options [nop,nop,TS val 3837409825 ecr 751260809], length 0
+22:58:43.335598 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 63, id 51256, offset 0, flags [DF], proto TCP (6), length 52)
+    203.0.113.34.80 > 10.77.0.2.56240: Flags [F.], cksum 0xf095 (correct), seq 10957, ack 78, win 64, options [nop,nop,TS val 751260815 ecr 3837409825], length 0
+22:58:43.336379 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 66: (tos 0x0, ttl 64, id 37566, offset 0, flags [DF], proto TCP (6), length 52)
+    10.77.0.2.56240 > 203.0.113.34.80: Flags [.], cksum 0xf082 (correct), ack 10958, win 79, options [nop,nop,TS val 3837409829 ecr 751260815], length 0
+22:58:48.330384 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.0.2 tell 10.77.0.1, length 46
+22:58:48.332681 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Reply 10.77.0.2 is-at 02:00:00:03:00:01, length 46

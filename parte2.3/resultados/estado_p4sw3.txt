@@ -1,0 +1,98 @@
+Obtaining JSON from switch...
+Done
+Control utility for runtime P4 table manipulation
+RuntimeCmd: ==========
+TABLE ENTRIES
+**********
+Dumping entry 0x0
+Match key:
+* standard_metadata.ingress_port: EXACT     0002
+Action entry: MyIngress.set_guest - 
+**********
+Dumping entry 0x1
+Match key:
+* standard_metadata.ingress_port: EXACT     0003
+Action entry: MyIngress.set_guest - 
+**********
+Dumping entry 0x2
+Match key:
+* standard_metadata.ingress_port: EXACT     0004
+Action entry: MyIngress.set_guest - 
+==========
+Dumping default entry
+Action entry: NoAction - 
+==========
+RuntimeCmd: ==========
+TABLE ENTRIES
+**********
+Dumping entry 0x0
+Match key:
+* ethernet.etherType         : TERNARY   0806 &&& ffff
+* scalars.metadata_t.l3_dst  : TERNARY   0a4d0001 &&& ffffffff
+* scalars.metadata_t.l4_proto: TERNARY   00 &&& 00
+* scalars.metadata_t.l4_dport: TERNARY   0000 &&& 0000
+Priority: 10
+Action entry: MyIngress.acl_permit - 
+**********
+Dumping entry 0x1
+Match key:
+* ethernet.etherType         : TERNARY   0800 &&& ffff
+* scalars.metadata_t.l3_dst  : TERNARY   0a4d0001 &&& ffffffff
+* scalars.metadata_t.l4_proto: TERNARY   00 &&& 00
+* scalars.metadata_t.l4_dport: TERNARY   0000 &&& 0000
+Priority: 20
+Action entry: MyIngress.acl_permit - 
+**********
+Dumping entry 0x2
+Match key:
+* ethernet.etherType         : TERNARY   0800 &&& ffff
+* scalars.metadata_t.l3_dst  : TERNARY   cb007122 &&& ffffffff
+* scalars.metadata_t.l4_proto: TERNARY   06 &&& ff
+* scalars.metadata_t.l4_dport: TERNARY   0050 &&& ffff
+Priority: 30
+Action entry: MyIngress.acl_permit - 
+**********
+Dumping entry 0x3
+Match key:
+* ethernet.etherType         : TERNARY   0800 &&& ffff
+* scalars.metadata_t.l3_dst  : TERNARY   cb007122 &&& ffffffff
+* scalars.metadata_t.l4_proto: TERNARY   06 &&& ff
+* scalars.metadata_t.l4_dport: TERNARY   01bb &&& ffff
+Priority: 40
+Action entry: MyIngress.acl_permit - 
+==========
+Dumping default entry
+Action entry: MyIngress.acl_deny - 
+==========
+RuntimeCmd: ==========
+TABLE ENTRIES
+**********
+Dumping entry 0x0
+Match key:
+* ethernet.dstAddr    : EXACT     020000ff0002
+Action entry: MyIngress.forward - 01
+**********
+Dumping entry 0x1
+Match key:
+* ethernet.dstAddr    : EXACT     020000030001
+Action entry: MyIngress.forward - 02
+**********
+Dumping entry 0x2
+Match key:
+* ethernet.dstAddr    : EXACT     020000030002
+Action entry: MyIngress.forward - 03
+**********
+Dumping entry 0x3
+Match key:
+* ethernet.dstAddr    : EXACT     020000030003
+Action entry: MyIngress.forward - 04
+**********
+Dumping entry 0x4
+Match key:
+* ethernet.dstAddr    : EXACT     ffffffffffff
+Action entry: MyIngress.broadcast - 
+==========
+Dumping default entry
+Action entry: MyIngress.drop - 
+==========
+RuntimeCmd: 

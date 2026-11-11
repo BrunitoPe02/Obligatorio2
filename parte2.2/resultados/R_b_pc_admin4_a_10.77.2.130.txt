@@ -1,0 +1,53 @@
+### R_b - Reflexion b) host nuevo -> host registrado: pc_admin4 -> pc_admin1
+### pc_admin4 -> 10.77.2.130
+
+PING 10.77.2.130 (10.77.2.130) 56(84) bytes of data.
+From 10.77.2.133 icmp_seq=1 Destination Host Unreachable
+From 10.77.2.133 icmp_seq=2 Destination Host Unreachable
+From 10.77.2.133 icmp_seq=3 Destination Host Unreachable
+
+--- 10.77.2.130 ping statistics ---
+4 packets transmitted, 0 received, +3 errors, 100% packet loss, time 3110ms
+pipe 3
+RESULTADO=FALLA
+
+### Contadores de p4sw1 (puestos en cero antes de la prueba)
+MyIngress.port_in_cnt[1] pkts=0 bytes=0
+MyIngress.port_in_cnt[2] pkts=6 bytes=360
+MyIngress.port_in_cnt[3] pkts=0 bytes=0
+MyIngress.port_in_cnt[4] pkts=0 bytes=0
+MyIngress.port_in_cnt[5] pkts=6 bytes=360
+MyEgress.port_out_cnt[1] pkts=6 bytes=360
+MyEgress.port_out_cnt[2] pkts=6 bytes=360
+MyEgress.port_out_cnt[3] pkts=6 bytes=360
+MyEgress.port_out_cnt[4] pkts=6 bytes=360
+MyEgress.port_out_cnt[5] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[0] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[1] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[2] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[3] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[4] pkts=6 bytes=360
+MyIngress.unknown_drop_cnt[0] pkts=6 bytes=360
+RESULTADO=OK
+
+### Captura p22_rb_admin1.pcap en pc_admin1 
+22:26:36.829878 02:00:00:01:00:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.133, length 46
+22:26:36.829894 02:00:00:01:00:01 > 02:00:00:01:00:04, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Reply 10.77.2.130 is-at 02:00:00:01:00:01, length 28
+22:26:37.895731 02:00:00:01:00:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.133, length 46
+22:26:37.895760 02:00:00:01:00:01 > 02:00:00:01:00:04, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Reply 10.77.2.130 is-at 02:00:00:01:00:01, length 28
+22:26:38.915218 02:00:00:01:00:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.133, length 46
+22:26:38.915236 02:00:00:01:00:01 > 02:00:00:01:00:04, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Reply 10.77.2.130 is-at 02:00:00:01:00:01, length 28
+22:26:39.941102 02:00:00:01:00:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.133, length 46
+22:26:39.941130 02:00:00:01:00:01 > 02:00:00:01:00:04, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Reply 10.77.2.130 is-at 02:00:00:01:00:01, length 28
+22:26:40.961967 02:00:00:01:00:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.133, length 46
+22:26:40.961978 02:00:00:01:00:01 > 02:00:00:01:00:04, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Reply 10.77.2.130 is-at 02:00:00:01:00:01, length 28
+22:26:41.987180 02:00:00:01:00:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.133, length 46
+22:26:41.987213 02:00:00:01:00:01 > 02:00:00:01:00:04, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Reply 10.77.2.130 is-at 02:00:00:01:00:01, length 28
+
+### Captura p22_rb_admin4.pcap en pc_admin4 
+22:26:36.829303 02:00:00:01:00:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.133, length 28
+22:26:37.892810 02:00:00:01:00:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.133, length 28
+22:26:38.913734 02:00:00:01:00:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.133, length 28
+22:26:39.939260 02:00:00:01:00:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.133, length 28
+22:26:40.960988 02:00:00:01:00:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.133, length 28
+22:26:41.985403 02:00:00:01:00:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.133, length 28

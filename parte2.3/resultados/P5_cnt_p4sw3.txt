@@ -1,0 +1,21 @@
+MyIngress.port_in_cnt[1] pkts=1 bytes=60
+MyIngress.port_in_cnt[2] pkts=4 bytes=240
+MyIngress.port_in_cnt[3] pkts=0 bytes=0
+MyIngress.port_in_cnt[4] pkts=0 bytes=0
+MyEgress.port_out_cnt[1] pkts=1 bytes=60
+MyEgress.port_out_cnt[2] pkts=1 bytes=60
+MyEgress.port_out_cnt[3] pkts=0 bytes=0
+MyEgress.port_out_cnt[4] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[0] pkts=1 bytes=60
+MyIngress.mac_fwd_cnt[1] pkts=1 bytes=60
+MyIngress.mac_fwd_cnt[2] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[3] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[4] pkts=0 bytes=0
+MyIngress.unknown_drop_cnt[0] pkts=0 bytes=0
+MyIngress.guest_policy_cnt[0] pkts=1 bytes=60
+MyIngress.guest_policy_cnt[1] pkts=3 bytes=180
+MyIngress.guest_acl_cnt[0] pkts=1 bytes=60
+MyIngress.guest_acl_cnt[1] pkts=0 bytes=0
+MyIngress.guest_acl_cnt[2] pkts=0 bytes=0
+MyIngress.guest_acl_cnt[3] pkts=0 bytes=0
+RESULTADO=OK

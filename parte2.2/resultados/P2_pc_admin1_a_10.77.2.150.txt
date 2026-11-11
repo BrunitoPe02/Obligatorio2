@@ -1,0 +1,39 @@
+### P2 - Broadcast: copia al puerto de entrada descartada (ARP a IP libre)
+### pc_admin1 -> 10.77.2.150
+
+PING 10.77.2.150 (10.77.2.150) 56(84) bytes of data.
+From 10.77.2.130 icmp_seq=1 Destination Host Unreachable
+ping: sendmsg: No route to host
+From 10.77.2.130 icmp_seq=2 Destination Host Unreachable
+From 10.77.2.130 icmp_seq=3 Destination Host Unreachable
+
+--- 10.77.2.150 ping statistics ---
+4 packets transmitted, 0 received, +3 errors, 100% packet loss, time 3065ms
+pipe 3
+RESULTADO=FALLA
+
+### Contadores de p4sw1 (puestos en cero antes de la prueba)
+MyIngress.port_in_cnt[1] pkts=0 bytes=0
+MyIngress.port_in_cnt[2] pkts=3 bytes=180
+MyIngress.port_in_cnt[3] pkts=0 bytes=0
+MyIngress.port_in_cnt[4] pkts=0 bytes=0
+MyIngress.port_in_cnt[5] pkts=0 bytes=0
+MyEgress.port_out_cnt[1] pkts=3 bytes=180
+MyEgress.port_out_cnt[2] pkts=0 bytes=0
+MyEgress.port_out_cnt[3] pkts=3 bytes=180
+MyEgress.port_out_cnt[4] pkts=3 bytes=180
+MyEgress.port_out_cnt[5] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[0] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[1] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[2] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[3] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[4] pkts=3 bytes=180
+MyIngress.unknown_drop_cnt[0] pkts=0 bytes=0
+RESULTADO=OK
+
+### Captura p22_p2_admin1_entrante.pcap en pc_admin1 (solo entrante)
+
+### Captura p22_p2_admin2.pcap en pc_admin2 
+22:25:10.287117 02:00:00:01:00:01 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.150 tell 10.77.2.130, length 46
+22:25:11.303319 02:00:00:01:00:01 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.150 tell 10.77.2.130, length 46
+22:25:12.328577 02:00:00:01:00:01 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.150 tell 10.77.2.130, length 46

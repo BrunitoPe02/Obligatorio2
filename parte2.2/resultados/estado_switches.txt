@@ -1,0 +1,220 @@
+=================== p4sw1
+Obtaining JSON from switch...
+Done
+Control utility for runtime P4 table manipulation
+RuntimeCmd: ==========
+TABLE ENTRIES
+**********
+Dumping entry 0x0
+Match key:
+* ethernet.dstAddr    : EXACT     020000ff0000
+Action entry: MyIngress.forward - 01
+**********
+Dumping entry 0x1
+Match key:
+* ethernet.dstAddr    : EXACT     020000010001
+Action entry: MyIngress.forward - 02
+**********
+Dumping entry 0x2
+Match key:
+* ethernet.dstAddr    : EXACT     020000010002
+Action entry: MyIngress.forward - 03
+**********
+Dumping entry 0x3
+Match key:
+* ethernet.dstAddr    : EXACT     020000010003
+Action entry: MyIngress.forward - 04
+**********
+Dumping entry 0x4
+Match key:
+* ethernet.dstAddr    : EXACT     ffffffffffff
+Action entry: MyIngress.broadcast - 
+==========
+Dumping default entry
+Action entry: MyIngress.drop - 
+==========
+RuntimeCmd: ==========
+MC ENTRIES
+**********
+mgrp(1)
+  -> (L1h=0, rid=0) -> (ports=[1, 2, 3, 4], lags=[])
+==========
+LAGS
+==========
+RuntimeCmd: 
+RESULTADO=OK
+=================== p4sw2
+Obtaining JSON from switch...
+Done
+Control utility for runtime P4 table manipulation
+RuntimeCmd: ==========
+TABLE ENTRIES
+**********
+Dumping entry 0x0
+Match key:
+* ethernet.dstAddr    : EXACT     020000ff0001
+Action entry: MyIngress.forward - 01
+**********
+Dumping entry 0x1
+Match key:
+* ethernet.dstAddr    : EXACT     020000020001
+Action entry: MyIngress.forward - 02
+**********
+Dumping entry 0x2
+Match key:
+* ethernet.dstAddr    : EXACT     020000020002
+Action entry: MyIngress.forward - 03
+**********
+Dumping entry 0x3
+Match key:
+* ethernet.dstAddr    : EXACT     020000020003
+Action entry: MyIngress.forward - 04
+**********
+Dumping entry 0x4
+Match key:
+* ethernet.dstAddr    : EXACT     ffffffffffff
+Action entry: MyIngress.broadcast - 
+==========
+Dumping default entry
+Action entry: MyIngress.drop - 
+==========
+RuntimeCmd: ==========
+MC ENTRIES
+**********
+mgrp(1)
+  -> (L1h=0, rid=0) -> (ports=[1, 2, 3, 4], lags=[])
+==========
+LAGS
+==========
+RuntimeCmd: 
+RESULTADO=OK
+=================== p4sw3
+Obtaining JSON from switch...
+Done
+Control utility for runtime P4 table manipulation
+RuntimeCmd: ==========
+TABLE ENTRIES
+**********
+Dumping entry 0x0
+Match key:
+* ethernet.dstAddr    : EXACT     020000ff0002
+Action entry: MyIngress.forward - 01
+**********
+Dumping entry 0x1
+Match key:
+* ethernet.dstAddr    : EXACT     020000030001
+Action entry: MyIngress.forward - 02
+**********
+Dumping entry 0x2
+Match key:
+* ethernet.dstAddr    : EXACT     020000030002
+Action entry: MyIngress.forward - 03
+**********
+Dumping entry 0x3
+Match key:
+* ethernet.dstAddr    : EXACT     020000030003
+Action entry: MyIngress.forward - 04
+**********
+Dumping entry 0x4
+Match key:
+* ethernet.dstAddr    : EXACT     ffffffffffff
+Action entry: MyIngress.broadcast - 
+==========
+Dumping default entry
+Action entry: MyIngress.drop - 
+==========
+RuntimeCmd: ==========
+MC ENTRIES
+**********
+mgrp(1)
+  -> (L1h=0, rid=0) -> (ports=[1, 2, 3, 4], lags=[])
+==========
+LAGS
+==========
+RuntimeCmd: 
+RESULTADO=OK
+=================== p4sw4
+Obtaining JSON from switch...
+Done
+Control utility for runtime P4 table manipulation
+RuntimeCmd: ==========
+TABLE ENTRIES
+**********
+Dumping entry 0x0
+Match key:
+* ethernet.dstAddr    : EXACT     020000ff0003
+Action entry: MyIngress.forward - 01
+**********
+Dumping entry 0x1
+Match key:
+* ethernet.dstAddr    : EXACT     020000040001
+Action entry: MyIngress.forward - 02
+**********
+Dumping entry 0x2
+Match key:
+* ethernet.dstAddr    : EXACT     ffffffffffff
+Action entry: MyIngress.broadcast - 
+==========
+Dumping default entry
+Action entry: MyIngress.drop - 
+==========
+RuntimeCmd: ==========
+MC ENTRIES
+**********
+mgrp(1)
+  -> (L1h=0, rid=0) -> (ports=[1, 2], lags=[])
+==========
+LAGS
+==========
+RuntimeCmd: 
+RESULTADO=OK
+=================== p4sw1 despues de alta_admin4
+Obtaining JSON from switch...
+Done
+Control utility for runtime P4 table manipulation
+RuntimeCmd: ==========
+TABLE ENTRIES
+**********
+Dumping entry 0x0
+Match key:
+* ethernet.dstAddr    : EXACT     020000ff0000
+Action entry: MyIngress.forward - 01
+**********
+Dumping entry 0x1
+Match key:
+* ethernet.dstAddr    : EXACT     020000010001
+Action entry: MyIngress.forward - 02
+**********
+Dumping entry 0x2
+Match key:
+* ethernet.dstAddr    : EXACT     020000010002
+Action entry: MyIngress.forward - 03
+**********
+Dumping entry 0x3
+Match key:
+* ethernet.dstAddr    : EXACT     020000010003
+Action entry: MyIngress.forward - 04
+**********
+Dumping entry 0x4
+Match key:
+* ethernet.dstAddr    : EXACT     ffffffffffff
+Action entry: MyIngress.broadcast - 
+**********
+Dumping entry 0x1000005
+Match key:
+* ethernet.dstAddr    : EXACT     020000010004
+Action entry: MyIngress.forward - 05
+==========
+Dumping default entry
+Action entry: MyIngress.drop - 
+==========
+RuntimeCmd: ==========
+MC ENTRIES
+**********
+mgrp(1)
+  -> (L1h=0, rid=0) -> (ports=[1, 2, 3, 4, 5], lags=[])
+==========
+LAGS
+==========
+RuntimeCmd: 
+RESULTADO=OK

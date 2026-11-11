@@ -1,0 +1,45 @@
+### SC - stateless C: ACK fuera de conexion de guest1 a srv1:80
+
+### pc_guest1: hping_ack 203.0.113.34 80
+
+--- 203.0.113.34 hping statistic ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 4.2/505.2/1006.2 ms
+HPING 203.0.113.34 (eth0 203.0.113.34): A set, 40 headers + 0 data bytes
+len=46 ip=203.0.113.34 ttl=63 DF id=0 sport=80 flags=R seq=0 win=0 rtt=4.2 ms
+DUP! len=46 ip=203.0.113.34 ttl=63 DF id=0 sport=80 flags=R seq=0 win=0 rtt=1006.2 ms
+
+### Contadores de p4sw3 (en cero al empezar la prueba)
+MyIngress.port_in_cnt[1] pkts=3 bytes=180
+MyIngress.port_in_cnt[2] pkts=3 bytes=180
+MyIngress.port_in_cnt[3] pkts=0 bytes=0
+MyIngress.port_in_cnt[4] pkts=0 bytes=0
+MyEgress.port_out_cnt[1] pkts=3 bytes=180
+MyEgress.port_out_cnt[2] pkts=3 bytes=180
+MyEgress.port_out_cnt[3] pkts=1 bytes=60
+MyEgress.port_out_cnt[4] pkts=1 bytes=60
+MyIngress.mac_fwd_cnt[0] pkts=2 bytes=120
+MyIngress.mac_fwd_cnt[1] pkts=3 bytes=180
+MyIngress.mac_fwd_cnt[2] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[3] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[4] pkts=1 bytes=60
+MyIngress.unknown_drop_cnt[0] pkts=0 bytes=0
+MyIngress.guest_policy_cnt[0] pkts=3 bytes=180
+MyIngress.guest_policy_cnt[1] pkts=0 bytes=0
+MyIngress.guest_acl_cnt[0] pkts=1 bytes=60
+MyIngress.guest_acl_cnt[1] pkts=0 bytes=0
+MyIngress.guest_acl_cnt[2] pkts=2 bytes=120
+MyIngress.guest_acl_cnt[3] pkts=0 bytes=0
+RESULTADO=OK
+
+### Captura p23_sc_sw3_eth0_rcla.pcap (p4sw3 eth0)
+23:00:24.946727 02:00:00:03:00:01 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.0.1 tell 10.77.0.2, length 46
+23:00:24.947158 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Reply 10.77.0.1 is-at 02:00:00:ff:00:02, length 46
+23:00:24.948125 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 60: (tos 0x0, ttl 64, id 21644, offset 0, flags [none], proto TCP (6), length 40)
+    10.77.0.2.31337 > 203.0.113.34.80: Flags [.], cksum 0x4fbb (correct), ack 54239494, win 512, length 0
+23:00:24.949754 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 60: (tos 0x0, ttl 63, id 0, offset 0, flags [DF], proto TCP (6), length 40)
+    203.0.113.34.80 > 10.77.0.2.31337: Flags [R], cksum 0x4a74 (correct), seq 54239494, win 0, length 0
+23:00:25.947944 02:00:00:03:00:01 > 02:00:00:ff:00:02, ethertype IPv4 (0x0800), length 60: (tos 0x0, ttl 64, id 11997, offset 0, flags [none], proto TCP (6), length 40)
+    10.77.0.2.31337 > 203.0.113.34.80: Flags [.], cksum 0x33de (correct), ack 1152503772, win 512, length 0
+23:00:25.950889 02:00:00:ff:00:02 > 02:00:00:03:00:01, ethertype IPv4 (0x0800), length 60: (tos 0x0, ttl 63, id 0, offset 0, flags [DF], proto TCP (6), length 40)
+    203.0.113.34.80 > 10.77.0.2.31337: Flags [R], cksum 0x35e7 (correct), seq 1206743265, win 0, length 0

@@ -1,0 +1,33 @@
+### P5 - guest1: ping a guest2 10.77.0.3
+
+### pc_guest1: ping 10.77.0.3 3
+PING 10.77.0.3 (10.77.0.3) 56(84) bytes of data.
+
+--- 10.77.0.3 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2025ms
+
+
+### Contadores de p4sw3 (en cero al empezar la prueba)
+MyIngress.port_in_cnt[1] pkts=1 bytes=60
+MyIngress.port_in_cnt[2] pkts=4 bytes=240
+MyIngress.port_in_cnt[3] pkts=0 bytes=0
+MyIngress.port_in_cnt[4] pkts=0 bytes=0
+MyEgress.port_out_cnt[1] pkts=1 bytes=60
+MyEgress.port_out_cnt[2] pkts=1 bytes=60
+MyEgress.port_out_cnt[3] pkts=0 bytes=0
+MyEgress.port_out_cnt[4] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[0] pkts=1 bytes=60
+MyIngress.mac_fwd_cnt[1] pkts=1 bytes=60
+MyIngress.mac_fwd_cnt[2] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[3] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[4] pkts=0 bytes=0
+MyIngress.unknown_drop_cnt[0] pkts=0 bytes=0
+MyIngress.guest_policy_cnt[0] pkts=1 bytes=60
+MyIngress.guest_policy_cnt[1] pkts=3 bytes=180
+MyIngress.guest_acl_cnt[0] pkts=1 bytes=60
+MyIngress.guest_acl_cnt[1] pkts=0 bytes=0
+MyIngress.guest_acl_cnt[2] pkts=0 bytes=0
+MyIngress.guest_acl_cnt[3] pkts=0 bytes=0
+RESULTADO=OK
+
+### Captura p23_p5_guest2.pcap (pc_guest2 eth0)

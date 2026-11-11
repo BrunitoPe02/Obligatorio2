@@ -1,0 +1,32 @@
+### P3 - ADMIN: pc_admin1 -> gateway rcla eth0
+### pc_admin1 -> 10.77.2.129
+
+PING 10.77.2.129 (10.77.2.129) 56(84) bytes of data.
+64 bytes from 10.77.2.129: icmp_seq=1 ttl=64 time=1.78 ms
+64 bytes from 10.77.2.129: icmp_seq=2 ttl=64 time=2.44 ms
+64 bytes from 10.77.2.129: icmp_seq=3 ttl=64 time=1.51 ms
+64 bytes from 10.77.2.129: icmp_seq=4 ttl=64 time=3.00 ms
+
+--- 10.77.2.129 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3013ms
+rtt min/avg/max/mdev = 1.513/2.181/3.000/0.579 ms
+RESULTADO=OK
+
+### Contadores de p4sw1 (puestos en cero antes de la prueba)
+MyIngress.port_in_cnt[1] pkts=6 bytes=512
+MyIngress.port_in_cnt[2] pkts=6 bytes=512
+MyIngress.port_in_cnt[3] pkts=0 bytes=0
+MyIngress.port_in_cnt[4] pkts=0 bytes=0
+MyIngress.port_in_cnt[5] pkts=0 bytes=0
+MyEgress.port_out_cnt[1] pkts=6 bytes=512
+MyEgress.port_out_cnt[2] pkts=6 bytes=512
+MyEgress.port_out_cnt[3] pkts=1 bytes=60
+MyEgress.port_out_cnt[4] pkts=1 bytes=60
+MyEgress.port_out_cnt[5] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[0] pkts=5 bytes=452
+MyIngress.mac_fwd_cnt[1] pkts=6 bytes=512
+MyIngress.mac_fwd_cnt[2] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[3] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[4] pkts=1 bytes=60
+MyIngress.unknown_drop_cnt[0] pkts=0 bytes=0
+RESULTADO=OK

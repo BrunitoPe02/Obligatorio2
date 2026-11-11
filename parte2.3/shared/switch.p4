@@ -1,4 +1,4 @@
-/* Obligatorio 2 - Parte 2.2: switch Ethernet P4 (v1model / BMv2).
+/* Obligatorio 2 - Parte 2.3: switch Ethernet P4 con politica de acceso (v1model / BMv2).
  * Programa general: el mismo para todas las instancias de p4sw.
  * Lo que cambia entre switches es solo el plano de control (commands.txt).
  */
@@ -109,9 +109,13 @@ parser MyParser(packet_in pkt,
         pkt.extract(hdr.ipv4);
         meta.l3_dst   = hdr.ipv4.dstAddr;
         meta.l4_proto = hdr.ipv4.protocol;
-        transition select(hdr.ipv4.protocol) {
-            PROTO_TCP: parse_tcp;
-            default:   accept;
+        // Solo se extrae TCP si el encabezado IPv4 mide 20 bytes (ihl == 5, sin
+        // opciones) y el paquete no es un fragmento posterior (fragOffset == 0).
+        // En otro caso el encabezado TCP no esta donde el parser lo buscaria:
+        // l4_dport queda en 0 y, para un invitado, la lista blanca lo descarta.
+        transition select(hdr.ipv4.ihl, hdr.ipv4.fragOffset, hdr.ipv4.protocol) {
+            (4w5, 13w0, PROTO_TCP): parse_tcp;
+            default:                accept;
         }
     }
 

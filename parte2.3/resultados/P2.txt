@@ -1,0 +1,27 @@
+### P2 - guest1: curl HTTPS a srv1
+
+### pc_guest1: curl https://203.0.113.34/
+curl https://203.0.113.34/ -> HTTP 200
+
+### Contadores de p4sw3 (en cero al empezar la prueba)
+MyIngress.port_in_cnt[1] pkts=17 bytes=13648
+MyIngress.port_in_cnt[2] pkts=17 bytes=1825
+MyIngress.port_in_cnt[3] pkts=0 bytes=0
+MyIngress.port_in_cnt[4] pkts=0 bytes=0
+MyEgress.port_out_cnt[1] pkts=17 bytes=1825
+MyEgress.port_out_cnt[2] pkts=17 bytes=13648
+MyEgress.port_out_cnt[3] pkts=1 bytes=60
+MyEgress.port_out_cnt[4] pkts=1 bytes=60
+MyIngress.mac_fwd_cnt[0] pkts=16 bytes=1765
+MyIngress.mac_fwd_cnt[1] pkts=17 bytes=13648
+MyIngress.mac_fwd_cnt[2] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[3] pkts=0 bytes=0
+MyIngress.mac_fwd_cnt[4] pkts=1 bytes=60
+MyIngress.unknown_drop_cnt[0] pkts=0 bytes=0
+MyIngress.guest_policy_cnt[0] pkts=17 bytes=1825
+MyIngress.guest_policy_cnt[1] pkts=0 bytes=0
+MyIngress.guest_acl_cnt[0] pkts=1 bytes=60
+MyIngress.guest_acl_cnt[1] pkts=0 bytes=0
+MyIngress.guest_acl_cnt[2] pkts=0 bytes=0
+MyIngress.guest_acl_cnt[3] pkts=16 bytes=1765
+RESULTADO=OK
