@@ -128,13 +128,19 @@ Leyenda:
 - **2.4:** la lógica de port_security es correcta: la clave es (ingress_port, srcAddr) y se aplica antes de la ACL.
 - **3:** no hay solapamiento público. OSPF solo anuncia lo permitido y hay 24 adyacencias Full. El NAT de rcla y rclb está bien. La ACL apunta a .98. El resumen marca 31/31.
 
-## 6. Preguntas pendientes para el profesor
+## 6. Preguntas al profesor
 
-- ¿ADMIN tiene que poder hacer ping a los invitados? Choca con "utilizar servicios normalmente" y con una ACL stateless.
-- ¿Los invitados pueden quedarse sin Internet ni DNS?
+**Respondidas**
+
+| Pregunta | Respuesta del profesor | Acción |
+|---|---|---|
+| ADMIN no puede hacer ping a un invitado: la ACL stateless descarta el echo-reply (§2.3, pág. 9-10) | "Está bien, documentarlo" | No cambiar la ACL. En el informe de 2.3 (punto 3, limitación stateless), explicar que el echo-reply entra por un puerto de invitado con destino 10.77.2.x, no coincide con ninguna regla y cae en `acl_deny`. Mencionarlo en el informe de la Parte 3 como comportamiento esperado. |
+| Invitados sin Internet ni DNS. ¿"Comunicarse con el gateway" es solo como destino? (§2.3 pág. 9; problema pág. 4; Parte 3 pág. 11) | "Correcto" (vale la lectura literal) | La ACL actual está bien. Aclararlo en el informe de la Parte 3. Opcional: agregar el caso negativo invitado→8.8.8.8 = FALLA. |
+| Loopbacks /32 en r1 y r6 para el tráfico "entre r1 y r6" (§1.5, pág. 7) | "Es una buena práctica, documentarlo" | Justificar en `informe_1.5.md`: la /32 no depende de una interfaz física y sigue siendo alcanzable si cae un enlace. |
+
+**Sin consultar todavía**
 - ¿Qué IP de rcla cuenta como "gateway"?
 - ¿Hay que emular el servidor web extra de la Parte 3?
-- ¿Se aceptan los loopbacks /32 de la 1.5?
 
 ## 7. Orden sugerido
 
