@@ -12,8 +12,8 @@ table_add MyIngress.port_role MyIngress.set_guest 3 =>
 table_add MyIngress.port_role MyIngress.set_guest 4 =>
 table_add MyIngress.guest_acl MyIngress.acl_permit 0x0806&&&0xFFFF 10.77.0.1&&&0xFFFFFFFF 0&&&0 0&&&0 => 10
 table_add MyIngress.guest_acl MyIngress.acl_permit 0x0800&&&0xFFFF 10.77.0.1&&&0xFFFFFFFF 0&&&0 0&&&0 => 20
-table_add MyIngress.guest_acl MyIngress.acl_permit 0x0800&&&0xFFFF 203.0.113.34&&&0xFFFFFFFF 6&&&0xFF 80&&&0xFFFF => 30
-table_add MyIngress.guest_acl MyIngress.acl_permit 0x0800&&&0xFFFF 203.0.113.34&&&0xFFFFFFFF 6&&&0xFF 443&&&0xFFFF => 40
+table_add MyIngress.guest_acl MyIngress.acl_permit 0x0800&&&0xFFFF 203.0.113.98&&&0xFFFFFFFF 6&&&0xFF 80&&&0xFFFF => 30
+table_add MyIngress.guest_acl MyIngress.acl_permit 0x0800&&&0xFFFF 203.0.113.98&&&0xFFFFFFFF 6&&&0xFF 443&&&0xFFFF => 40
 
 
 # 2.4 Port security: pares (puerto, MAC origen) autorizados

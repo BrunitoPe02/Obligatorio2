@@ -2,13 +2,13 @@
 
 ### pc_guest1: ping 10.77.0.1 3
 PING 10.77.0.1 (10.77.0.1) 56(84) bytes of data.
-64 bytes from 10.77.0.1: icmp_seq=1 ttl=64 time=2.67 ms
-64 bytes from 10.77.0.1: icmp_seq=2 ttl=64 time=3.16 ms
-64 bytes from 10.77.0.1: icmp_seq=3 ttl=64 time=2.69 ms
+64 bytes from 10.77.0.1: icmp_seq=1 ttl=64 time=2.11 ms
+64 bytes from 10.77.0.1: icmp_seq=2 ttl=64 time=3.38 ms
+64 bytes from 10.77.0.1: icmp_seq=3 ttl=64 time=1.81 ms
 
 --- 10.77.0.1 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2014ms
-rtt min/avg/max/mdev = 2.672/2.838/3.156/0.224 ms
+3 packets transmitted, 3 received, 0% packet loss, time 2013ms
+rtt min/avg/max/mdev = 1.808/2.433/3.379/0.680 ms
 
 ### Contadores de p4sw3 (en cero al empezar la prueba)
 MyIngress.port_in_cnt[1] pkts=4 bytes=354

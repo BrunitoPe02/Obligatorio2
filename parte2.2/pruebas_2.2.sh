@@ -143,7 +143,7 @@ prueba P4b "INVITADOS (p4sw3): pc_guest1 -> pc_guest2" p4sw3 4 5 \
 chequear "unknown_drop_cnt" "$(cnt $F MyIngress.unknown_drop_cnt 0)" -eq 0
 
 prueba P4c "SERVIDORES (p4sw4): srv1 -> gateway rcla eth3" p4sw4 2 3 \
-    srv1 203.0.113.33 OK "srv1" ""
+    srv1 203.0.113.97 OK "srv1" ""
 chequear "unknown_drop_cnt" "$(cnt $F MyIngress.unknown_drop_cnt 0)" -eq 0
 
 # ---------------------------------------------------------------------------

@@ -2,14 +2,14 @@
 ### pc_admin1 -> 10.77.2.132
 
 PING 10.77.2.132 (10.77.2.132) 56(84) bytes of data.
-64 bytes from 10.77.2.132: icmp_seq=1 ttl=64 time=1.94 ms
-64 bytes from 10.77.2.132: icmp_seq=2 ttl=64 time=2.16 ms
-64 bytes from 10.77.2.132: icmp_seq=3 ttl=64 time=3.16 ms
-64 bytes from 10.77.2.132: icmp_seq=4 ttl=64 time=3.46 ms
+64 bytes from 10.77.2.132: icmp_seq=1 ttl=64 time=1.81 ms
+64 bytes from 10.77.2.132: icmp_seq=2 ttl=64 time=2.87 ms
+64 bytes from 10.77.2.132: icmp_seq=3 ttl=64 time=3.15 ms
+64 bytes from 10.77.2.132: icmp_seq=4 ttl=64 time=3.05 ms
 
 --- 10.77.2.132 ping statistics ---
-4 packets transmitted, 4 received, 0% packet loss, time 3014ms
-rtt min/avg/max/mdev = 1.942/2.678/3.456/0.642 ms
+4 packets transmitted, 4 received, 0% packet loss, time 3018ms
+rtt min/avg/max/mdev = 1.813/2.721/3.153/0.534 ms
 RESULTADO=OK
 
 ### Contadores de p4sw1 (puestos en cero antes de la prueba)
@@ -32,23 +32,23 @@ MyIngress.unknown_drop_cnt[0] pkts=0 bytes=0
 RESULTADO=OK
 
 ### Captura p22_p1b_admin3.pcap en pc_admin3 
-22:24:47.313748 02:00:00:01:00:01 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.132 tell 10.77.2.130, length 46
-22:24:47.313756 02:00:00:01:00:03 > 02:00:00:01:00:01, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Reply 10.77.2.132 is-at 02:00:00:01:00:03, length 28
-22:24:47.314742 02:00:00:01:00:01 > 02:00:00:01:00:03, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 31629, offset 0, flags [DF], proto ICMP (1), length 84)
-    10.77.2.130 > 10.77.2.132: ICMP echo request, id 36043, seq 1, length 64
-22:24:47.314762 02:00:00:01:00:03 > 02:00:00:01:00:01, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 12034, offset 0, flags [none], proto ICMP (1), length 84)
-    10.77.2.132 > 10.77.2.130: ICMP echo reply, id 36043, seq 1, length 64
-22:24:48.319524 02:00:00:01:00:01 > 02:00:00:01:00:03, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 32615, offset 0, flags [DF], proto ICMP (1), length 84)
-    10.77.2.130 > 10.77.2.132: ICMP echo request, id 36043, seq 2, length 64
-22:24:48.319568 02:00:00:01:00:03 > 02:00:00:01:00:01, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 12104, offset 0, flags [none], proto ICMP (1), length 84)
-    10.77.2.132 > 10.77.2.130: ICMP echo reply, id 36043, seq 2, length 64
-22:24:49.323074 02:00:00:01:00:01 > 02:00:00:01:00:03, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 32657, offset 0, flags [DF], proto ICMP (1), length 84)
-    10.77.2.130 > 10.77.2.132: ICMP echo request, id 36043, seq 3, length 64
-22:24:49.323137 02:00:00:01:00:03 > 02:00:00:01:00:01, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 12484, offset 0, flags [none], proto ICMP (1), length 84)
-    10.77.2.132 > 10.77.2.130: ICMP echo reply, id 36043, seq 3, length 64
-22:24:50.328701 02:00:00:01:00:01 > 02:00:00:01:00:03, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 33055, offset 0, flags [DF], proto ICMP (1), length 84)
-    10.77.2.130 > 10.77.2.132: ICMP echo request, id 36043, seq 4, length 64
-22:24:50.328856 02:00:00:01:00:03 > 02:00:00:01:00:01, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 12693, offset 0, flags [none], proto ICMP (1), length 84)
-    10.77.2.132 > 10.77.2.130: ICMP echo reply, id 36043, seq 4, length 64
-22:24:52.487412 02:00:00:01:00:03 > 02:00:00:01:00:01, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.132, length 28
-22:24:52.489792 02:00:00:01:00:01 > 02:00:00:01:00:03, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Reply 10.77.2.130 is-at 02:00:00:01:00:01, length 46
+18:56:54.013724 02:00:00:01:00:01 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.132 tell 10.77.2.130, length 46
+18:56:54.013732 02:00:00:01:00:03 > 02:00:00:01:00:01, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Reply 10.77.2.132 is-at 02:00:00:01:00:03, length 28
+18:56:54.014550 02:00:00:01:00:01 > 02:00:00:01:00:03, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 18417, offset 0, flags [DF], proto ICMP (1), length 84)
+    10.77.2.130 > 10.77.2.132: ICMP echo request, id 23532, seq 1, length 64
+18:56:54.014586 02:00:00:01:00:03 > 02:00:00:01:00:01, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 18557, offset 0, flags [none], proto ICMP (1), length 84)
+    10.77.2.132 > 10.77.2.130: ICMP echo reply, id 23532, seq 1, length 64
+18:56:55.021892 02:00:00:01:00:01 > 02:00:00:01:00:03, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 18934, offset 0, flags [DF], proto ICMP (1), length 84)
+    10.77.2.130 > 10.77.2.132: ICMP echo request, id 23532, seq 2, length 64
+18:56:55.021955 02:00:00:01:00:03 > 02:00:00:01:00:01, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 18663, offset 0, flags [none], proto ICMP (1), length 84)
+    10.77.2.132 > 10.77.2.130: ICMP echo reply, id 23532, seq 2, length 64
+18:56:56.026538 02:00:00:01:00:01 > 02:00:00:01:00:03, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 19176, offset 0, flags [DF], proto ICMP (1), length 84)
+    10.77.2.130 > 10.77.2.132: ICMP echo request, id 23532, seq 3, length 64
+18:56:56.026614 02:00:00:01:00:03 > 02:00:00:01:00:01, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 19326, offset 0, flags [none], proto ICMP (1), length 84)
+    10.77.2.132 > 10.77.2.130: ICMP echo reply, id 23532, seq 3, length 64
+18:56:57.033142 02:00:00:01:00:01 > 02:00:00:01:00:03, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 19493, offset 0, flags [DF], proto ICMP (1), length 84)
+    10.77.2.130 > 10.77.2.132: ICMP echo request, id 23532, seq 4, length 64
+18:56:57.033242 02:00:00:01:00:03 > 02:00:00:01:00:01, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 19825, offset 0, flags [none], proto ICMP (1), length 84)
+    10.77.2.132 > 10.77.2.130: ICMP echo reply, id 23532, seq 4, length 64
+18:56:59.177223 02:00:00:01:00:03 > 02:00:00:01:00:01, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Request who-has 10.77.2.130 tell 10.77.2.132, length 28
+18:56:59.179724 02:00:00:01:00:01 > 02:00:00:01:00:03, ethertype ARP (0x0806), length 60: Ethernet (len 6), IPv4 (len 4), Reply 10.77.2.130 is-at 02:00:00:01:00:01, length 46

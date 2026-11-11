@@ -1,7 +1,7 @@
 ### P6b - guest1: TCP a srv1:22 (puerto no permitido)
 
-### pc_guest1: tcp 203.0.113.34 22
-conexion TCP a 203.0.113.34:22 sin respuesta
+### pc_guest1: tcp 203.0.113.98 22
+conexion TCP a 203.0.113.98:22 sin respuesta
 
 ### Contadores de p4sw3 (en cero al empezar la prueba)
 MyIngress.port_in_cnt[1] pkts=1 bytes=60

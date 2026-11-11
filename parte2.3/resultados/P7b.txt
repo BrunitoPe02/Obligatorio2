@@ -1,27 +1,27 @@
 ### P7b - dev1: ping a srv1 y a admin1
 
-### pc_dev1: ping 203.0.113.34 3
-PING 203.0.113.34 (203.0.113.34) 56(84) bytes of data.
-64 bytes from 203.0.113.34: icmp_seq=1 ttl=63 time=3.50 ms
-64 bytes from 203.0.113.34: icmp_seq=2 ttl=63 time=5.18 ms
-64 bytes from 203.0.113.34: icmp_seq=3 ttl=63 time=5.99 ms
+### pc_dev1: ping 203.0.113.98 3
+PING 203.0.113.98 (203.0.113.98) 56(84) bytes of data.
+64 bytes from 203.0.113.98: icmp_seq=1 ttl=63 time=3.51 ms
+64 bytes from 203.0.113.98: icmp_seq=2 ttl=63 time=5.50 ms
+64 bytes from 203.0.113.98: icmp_seq=3 ttl=63 time=5.41 ms
 
---- 203.0.113.34 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2010ms
-rtt min/avg/max/mdev = 3.502/4.891/5.994/1.037 ms
+--- 203.0.113.98 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2014ms
+rtt min/avg/max/mdev = 3.514/4.806/5.499/0.914 ms
 
 ### pc_dev1: ping 10.77.2.130 3
 PING 10.77.2.130 (10.77.2.130) 56(84) bytes of data.
-64 bytes from 10.77.2.130: icmp_seq=1 ttl=63 time=2.14 ms
-64 bytes from 10.77.2.130: icmp_seq=2 ttl=63 time=4.70 ms
-64 bytes from 10.77.2.130: icmp_seq=3 ttl=63 time=9.81 ms
+64 bytes from 10.77.2.130: icmp_seq=1 ttl=63 time=2.16 ms
+64 bytes from 10.77.2.130: icmp_seq=2 ttl=63 time=4.42 ms
+64 bytes from 10.77.2.130: icmp_seq=3 ttl=63 time=4.70 ms
 
 --- 10.77.2.130 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2010ms
-rtt min/avg/max/mdev = 2.137/5.546/9.806/3.188 ms
+3 packets transmitted, 3 received, 0% packet loss, time 2008ms
+rtt min/avg/max/mdev = 2.160/3.759/4.699/1.136 ms
 
-### pc_dev1: curl https://203.0.113.34/
-curl https://203.0.113.34/ -> HTTP 200
+### pc_dev1: curl https://203.0.113.98/
+curl https://203.0.113.98/ -> HTTP 200
 
 ### Contadores de p4sw2 (en cero al empezar la prueba)
 MyIngress.port_in_cnt[1] pkts=24 bytes=14296

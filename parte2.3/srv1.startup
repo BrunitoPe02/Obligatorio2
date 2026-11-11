@@ -9,5 +9,5 @@ service apache2 start
 
 ip link set dev eth0 address 02:00:00:04:00:01
 
-ip addr add 203.0.113.34/27 dev eth0
-ip route add default via 203.0.113.33
+ip addr add 203.0.113.98/27 dev eth0
+ip route add default via 203.0.113.97

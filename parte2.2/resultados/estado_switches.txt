@@ -200,7 +200,7 @@ Match key:
 * ethernet.dstAddr    : EXACT     ffffffffffff
 Action entry: MyIngress.broadcast - 
 **********
-Dumping entry 0x1000005
+Dumping entry 0x5
 Match key:
 * ethernet.dstAddr    : EXACT     020000010004
 Action entry: MyIngress.forward - 05

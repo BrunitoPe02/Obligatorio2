@@ -4,7 +4,7 @@
 PING 10.77.2.130 (10.77.2.130) 56(84) bytes of data.
 
 --- 10.77.2.130 ping statistics ---
-3 packets transmitted, 0 received, 100% packet loss, time 2033ms
+3 packets transmitted, 0 received, 100% packet loss, time 2040ms
 
 
 ### Contadores de p4sw3 (en cero al empezar la prueba)

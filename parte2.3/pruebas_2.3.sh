@@ -26,7 +26,7 @@ mkdir -p "$OUT"
 rm -f "$OUT"/*.txt
 RES="$OUT/resumen.txt"
 
-GW=10.77.0.1; SRV1=203.0.113.34
+GW=10.77.0.1; SRV1=203.0.113.98
 GUEST1=10.77.0.2; GUEST2=10.77.0.3; ADMIN1=10.77.2.130
 
 ex() { kathara exec "$1" -- bash /shared/t.sh "${@:2}" 2>&1; }
