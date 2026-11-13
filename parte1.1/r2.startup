@@ -7,7 +7,6 @@ ip addr add 172.16.77.25/30 dev eth3   # hacia r5
 
 # rutas estáticas: camino más corto sin pasar por rint; si empata, el router de menor número.
 ip route add 8.8.8.0/24 via 172.16.77.9          # rint
-ip route add 192.168.100.0/24 via 172.16.77.18   # LANA
 ip route add 203.0.113.0/27 via 172.16.77.18     # Cliente A
 ip route add 203.0.113.32/28 via 172.16.77.26    # DMZ B
 ip route add 192.168.77.4/30 via 172.16.77.26    # rclb
