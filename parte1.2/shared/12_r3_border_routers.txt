@@ -1,0 +1,9 @@
+============ OSPF router routing table =============
+R    1.1.1.1               [10] area: 0.0.0.0, ASBR
+                           via 172.16.77.13, eth0
+R    5.5.5.5               [10] area: 0.0.0.0, ASBR
+                           via 172.16.77.30, eth2
+R    6.6.6.6               [20] area: 0.0.0.0, ASBR
+                           via 172.16.77.30, eth2
+
+
