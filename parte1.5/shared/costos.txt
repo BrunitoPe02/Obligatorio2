@@ -58,5 +58,3 @@ eth0 is up
   Router ID 8.8.8.8, Network Type BROADCAST, Cost: 100
 eth1 is up
   Router ID 8.8.8.8, Network Type BROADCAST, Cost: 100
-eth2 is up
-  Router ID 8.8.8.8, Network Type BROADCAST, Cost: 10

@@ -1,0 +1,11 @@
+# Direcciones de las interfaces
+ip address add 192.168.77.10/30 dev eth0    # hacia r8
+ip address add 203.0.113.65/28 dev eth1     # LAN_C (pública, sin NAT)
+
+# Ruta por defecto hacia r8
+ip route add default via 192.168.77.9
+
+# Activar el reenvío de paquetes
+sysctl -w net.ipv4.ip_forward=1
+
+# Sin NAT: la LAN C usa direcciones públicas y el ISP la enruta tal cual

@@ -1,22 +1,24 @@
 Routing entry for 10.255.255.6/32
   Known via "ospf", distance 110, metric 30, best
-  Last update 00:02:08 ago
+  Last update 00:00:37 ago
   Flags: Selected 
   Status: Installed 
   * 172.16.77.10, via eth1, weight 1
 
+
 Routing entry for 10.255.255.1/32
   Known via "ospf", distance 110, metric 30, best
-  Last update 00:02:09 ago
+  Last update 00:00:38 ago
   Flags: Selected 
   Status: Installed 
   * 172.16.77.37, via eth1, weight 1
 
+
 traceroute to 10.255.255.6 (10.255.255.6), 30 hops max, 60 byte packets
- 1  172.16.77.10  1.005 ms  1.121 ms  1.244 ms
- 2  172.16.77.22  1.783 ms  3.912 ms  4.024 ms
- 3  10.255.255.6  4.427 ms  4.661 ms  4.925 ms
+ 1  172.16.77.10  1.801 ms  1.859 ms  2.310 ms
+ 2  172.16.77.22  2.704 ms  3.212 ms  4.083 ms
+ 3  10.255.255.6  9.636 ms  11.728 ms  13.132 ms
 traceroute to 10.255.255.1 (10.255.255.1), 30 hops max, 60 byte packets
- 1  172.16.77.37  0.746 ms  0.966 ms  1.121 ms
- 2  172.16.77.21  2.807 ms  2.810 ms  6.461 ms
- 3  10.255.255.1  6.752 ms  6.959 ms  7.181 ms
+ 1  172.16.77.37  1.761 ms  2.471 ms  3.478 ms
+ 2  172.16.77.21  4.364 ms  5.120 ms  9.629 ms
+ 3  10.255.255.1  10.039 ms  10.811 ms  12.199 ms
