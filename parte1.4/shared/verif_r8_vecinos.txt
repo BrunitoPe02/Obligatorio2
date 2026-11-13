@@ -1,0 +1,8 @@
+# r8 - 2026-11-13T17:53:43 UTC
+# $ vtysh -c "show ip ospf neighbor"
+
+Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
+7.7.7.7           1 Full/Backup     1h56m52s          36.764s 172.16.77.53    eth1:172.16.77.54                    0     0     0
+6.6.6.6           1 Full/DR         21m23s            36.763s 172.16.77.49    eth0:172.16.77.50                    0     0     0
+
+

@@ -1,0 +1,53 @@
+# r1 - 2026-11-13T17:54:05 UTC
+# $ vtysh -c "show ip route 203.0.113.64/28"
+Routing entry for 203.0.113.64/28
+  Known via "ospf", distance 110, metric 20, best
+  Last update 00:21:38 ago
+  Flags: Selected 
+  Status: Installed 
+  * 172.16.77.10, via eth1, weight 1
+  * 172.16.77.14, via eth2, weight 1
+
+
+# r1 - 2026-11-13T17:54:05 UTC
+# $ vtysh -c "show ip ospf route" | sed -n "/OSPF external routing table/,\$p"
+============ OSPF external routing table ===========
+N E2 8.8.8.0/24            [30/20] tag: 0
+                           via 172.16.77.10, eth1
+                           via 172.16.77.14, eth2
+N E2 203.0.113.0/27        [10/20] tag: 0
+                           via 172.16.77.14, eth2
+N E2 203.0.113.32/28       [20/20] tag: 0
+                           via 172.16.77.10, eth1
+                           via 172.16.77.14, eth2
+N E2 203.0.113.64/28       [40/20] tag: 0
+                           via 172.16.77.10, eth1
+                           via 172.16.77.14, eth2
+
+
+
+# r1 - 2026-11-13T17:54:06 UTC
+# $ vtysh -c "show ip ospf database external 203.0.113.64"
+
+       OSPF Router with ID (1.1.1.1)
+
+                AS External Link States 
+
+  LS age: 269
+  Options: 0x2  : *|-|-|-|-|-|E|-
+  LS Flags: 0x6  
+  LS Type: AS-external-LSA
+  Link State ID: 203.0.113.64 (External Network Number)
+  Advertising Router: 8.8.8.8
+  LS Seq Number: 80000005
+  Checksum: 0x9c8f
+  Length: 36
+
+  Network Mask: /28
+        Metric Type: 2 (Larger than any link state path)
+        TOS: 0
+        Metric: 20
+        Forward Address: 0.0.0.0
+        External Route Tag: 0
+
+
