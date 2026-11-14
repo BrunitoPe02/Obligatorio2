@@ -1,6 +1,6 @@
 # Parte 1.5 – Ingeniería de caminos
 
-Todos los archivos citados están en `parte1.5/shared/`. El lab `parte1.5` parte de la topología de la Parte 1.4 (incluye r7, r8 y LAN_C); solo se cambiaron los costos OSPF y se agregaron dos loopbacks.
+Todos los archivos citados están en `parte1.5/shared/`. El lab `parte1.5` parte de la topología de la Parte 1.4 (incluye r7, r8, rclC y LAN_C); solo se cambiaron los costos OSPF y se agregaron dos loopbacks.
 
 ## 1. Objetivo declarado
 
@@ -49,7 +49,7 @@ También se descartó el camino por r7 y r8 (r1 → r3 → r5 → r7 → r8 → 
 | r5 | 100 → r2 | 20 → r3 | 100 → r4 | 20 → r6 | 100 → r7 |
 | r6 | (rint, sin OSPF) | 10 → r4 | 20 → r5 | 100 → r8 | |
 | r7 | 100 → r5 | 100 → r8 | | | |
-| r8 | 100 → r6 | 100 → r7 | (LAN_C, sin OSPF) | | |
+| r8 | 100 → r6 | 100 → r7 | (rclC, sin OSPF) | | |
 
 Se configura en cada `rX/etc/frr/frr.conf` con `ip ospf cost N` dentro de la interfaz. Ejemplo (r2):
 
@@ -68,7 +68,7 @@ interface eth3
 
 ### 2.4 Loopbacks como extremos de la prueba
 
-Para medir "el tráfico entre r1 y r6" no sirve usar una IP de enlace como destino. Por ejemplo, 172.16.77.38 pertenece a la red r4–r6 y 172.16.77.49 a la red r6–r8: OSPF rutea hacia el **prefijo** del enlace, que está conectado a dos routers, y puede entrar a él por el otro extremo (r4 u r8) sin pasar por r6. Con la falla aplicada, el camino a 172.16.77.48/30 por r8 llegaría a ser más barato que el respaldo, y el traceroute no mostraría ninguno de los dos caminos declarados.
+Para medir "el tráfico entre r1 y r6" no sirve usar una IP de enlace como destino. Por ejemplo, 172.16.77.49 pertenece a la red r6–r8: OSPF rutea hacia el **prefijo** del enlace (172.16.77.48/30), y la métrica de esa ruta incluye el costo de la interfaz por la que se entra a la red, que no forma parte del camino r1↔r6. En r1, 172.16.77.48/30 tiene métrica **130** sin falla y **160** con el enlace r2–r4 caído, en lugar de 30 y 60. Además, como la red está conectada a dos routers, el último salto lo puede resolver cualquiera de los dos extremos del enlace, sin que el paquete atraviese necesariamente r6.
 
 Por eso se agregó en r1 y en r6 una loopback /32, anunciada en OSPF:
 
@@ -95,7 +95,7 @@ Una /32 en `lo` existe solo dentro de ese router y no depende de ningún enlace,
 4. Inicio de la captura en r1: `tcpdump -i any -U -w /shared/falla_r2_r4.pcap ip proto 89` (solo OSPF; se captura en todas las interfaces de r1 para ver los LSAs que llegan por r2 y por r3).
 5. **Falla** en el principal, enlace r2–r4: en r2, `ip link set eth2 down`.
 6. **Después de la falla:** mismos comandos que en el paso 3 → `despues_falla.txt`.
-7. **Restauración:** en r2, `ip link set eth2 up`; tras la reconvergencia, mismos comandos → `restauracion.txt`.
+7. **Restauración:** unos 50 s después de la falla (para que la captura incluya también la expiración del Dead interval en r4), en r2, `ip link set eth2 up`; tras la reconvergencia, mismos comandos → `restauracion.txt`.
 8. Fin de la captura.
 
 ## 4. Resultados
@@ -118,9 +118,9 @@ Routing entry for 10.255.255.6/32
   * 172.16.77.10, via eth1, weight 1
 
 traceroute to 10.255.255.6 (10.255.255.6), 30 hops max, 60 byte packets
- 1  172.16.77.10  1.005 ms  1.121 ms  1.244 ms
- 2  172.16.77.22  1.783 ms  3.912 ms  4.024 ms
- 3  10.255.255.6  4.427 ms  4.661 ms  4.925 ms
+ 1  172.16.77.10  1.801 ms  1.859 ms  2.310 ms
+ 2  172.16.77.22  2.704 ms  3.212 ms  4.083 ms
+ 3  10.255.255.6  9.636 ms  11.728 ms  13.132 ms
 ```
 
 ### 4.3 Después de la falla (`despues_falla.txt`)
@@ -131,9 +131,9 @@ Routing entry for 10.255.255.6/32
   * 172.16.77.14, via eth2, weight 1
 
 traceroute to 10.255.255.6 (10.255.255.6), 30 hops max, 60 byte packets
- 1  172.16.77.14  2.663 ms  2.571 ms  2.555 ms
- 2  172.16.77.30  3.091 ms  3.103 ms  3.581 ms
- 3  10.255.255.6  4.082 ms  4.418 ms  4.838 ms
+ 1  172.16.77.14  0.579 ms  0.942 ms  1.393 ms
+ 2  172.16.77.30  2.419 ms  2.873 ms  3.325 ms
+ 3  10.255.255.6  3.764 ms  7.745 ms  7.772 ms
 ```
 
 El tráfico pasa por el respaldo completo (r3 y r5), y no por ninguno de los caminos mixtos de la sección 2.2.
@@ -146,32 +146,33 @@ Al volver a levantar el enlace, la ruta vuelve sola al principal (métrica 30, v
 
 Captura en r1 (interfaces eth1 hacia r2 y eth2 hacia r3). 172.16.77.10 es r2, 172.16.77.14 es r3, y 172.16.77.9 / .13 son r1. Se omiten los Hellos periódicos (cada 10 s).
 
-**Falla**
+**Falla** (r2 eth2 se baja a las 18:30:34)
 
 | Hora | Origen → Destino | Mensaje | Contenido / significado |
 |---|---|---|---|
-| **18:26:28.808** | r2 (.10) → 224.0.0.5 | **LS-Update**, 5 LSAs | Router-LSA de 2.2.2.2 (seq 0x8000000f, 10 y 11) que lista solo los enlaces hacia r1 (costo 10), r3 (100) y r5 (100): **ya no incluye el enlace a r4**. Además, un Network-LSA 172.16.77.21 con age 3600 (MaxAge), que retira (*flush*) el LSA de red del segmento r2–r4. |
-| 18:26:28.809 | r1 (.13) → 224.0.0.5 | LS-Update | r1 reinunda el Router-LSA nuevo de r2 hacia r3. |
-| 18:26:28.809 | r3 (.14) → 224.0.0.5 | LS-Update | r3 inunda el mismo LSA hacia r1: las dos copias se cruzan (inundación confiable por todos los caminos). |
-| 18:26:28.810 | r1 → r2, r1 → r3 | LS-Ack | Acuses de recibo. |
-| 18:26:33.817 | r2 → r1, r3 → r1, r1 → r3 | LS-Update + LS-Ack | Retransmisión de la última versión (0x80000011) al vencer el temporizador de retransmisión (5 s). |
-| **18:27:01.867** | r2 / r3 / r1 (reinundación) | **LS-Update**, 2 LSAs, originados por r4 | Expira el Dead interval de r2 en r4 (40 s desde el último Hello recibido). r4 publica un Router-LSA (seq 0x8000000c) donde 172.16.77.20/30 pasa a ser **Stub Network**, y retira (MaxAge) su Network-LSA 172.16.77.22. |
+| **18:30:34.560** | r2 (.10) → 224.0.0.5 | **LS-Update**, 5 LSAs | Tres versiones del Router-LSA de 2.2.2.2 (seq 0x8000000f, 10 y 11) que listan solo los enlaces hacia r1, r3 y r5: **ya no incluyen el enlace a r4**. Además, el Network-LSA 172.16.77.21 con age 3600 (MaxAge), que retira (*flush*) el LSA de red del segmento r2–r4. |
+| 18:30:34.560 | r1 (.13) → 224.0.0.5 | LS-Update | r1 reinunda hacia r3 la versión 0x8000000f. |
+| 18:30:34.561 | r3 (.14) → 224.0.0.5 | LS-Update | r3 inunda la misma versión hacia r1: las dos copias se cruzan (inundación confiable por todos los caminos). |
+| 18:30:34.560 | r1 → r2, r1 → r3 | LS-Ack | r1 confirma la 0x8000000f y el retiro del Network-LSA. **No confirma la 0x10 ni la 0x11**: llegaron menos de 1 s después de la 0x0f y se descartan por MinLSArrival. |
+| 18:30:39.558 | r2 → r1 (unicast), reinundado por r1 y r3 | LS-Update | r2 retransmite la 0x80000011 al vencer el RxmtInterval (5 s); ahora r1 la acepta y la confirma. |
+| **18:31:09.540** | r3 y r2 → r1, reinundado por r1 | **LS-Update**, 2 LSAs originados por r4 | Expira el Dead interval de r2 en r4 (40 s desde el último Hello recibido). r4 publica un Router-LSA (seq 0x8000000c) donde 172.16.77.20/30 pasa a ser **Stub Network**, y retira (MaxAge) su Network-LSA 172.16.77.22. |
 
-**Restauración**
+**Restauración** (r2 eth2 se levanta a las 18:31:25.6)
 
 | Hora | Origen → Destino | Mensaje | Contenido / significado |
 |---|---|---|---|
-| **18:27:13.193** | r2 (.10) → 224.0.0.5 | LS-Update | Router-LSA de r2 (seq 0x80000012): con eth2 de nuevo arriba, r2 anuncia 172.16.77.20/30 como **Stub Network**, porque todavía no tiene adyacencia con r4. |
-| **18:27:20.558** | r2 (.10) → 224.0.0.5 | LS-Update | Router-LSA de r2 (seq 0x80000014): la adyacencia con r4 llegó a `Full` y 172.16.77.20/30 vuelve a ser una red de **tránsito** (vecino DR 172.16.77.22). |
-| 18:27:20.560 | r2 → 224.0.0.5 (y reinundado por r3 y r1) | LS-Update, 2 LSAs, originados por r4 | Router-LSA de r4 (seq 0x8000000d) con el enlace de tránsito hacia r2 y Network-LSA 172.16.77.22 (seq 0x80000002) con r4 como DR. |
-| 18:27:25.558 | r2 → r1, r1/r3 | LS-Update | Retransmisión del LSA 0x80000014. |
+| **18:31:25.941** | r2 (.10) → 224.0.0.5 | LS-Update | Router-LSA de r2 (seq 0x80000012): con eth2 de nuevo arriba, r2 anuncia 172.16.77.20/30 como **Stub Network**, porque todavía no tiene adyacencia con r4. |
+| 18:31:30.067 | r2 → 224.0.0.5, reinundado por r1 y r3 | LS-Update | Router-LSA de r2 (seq 0x80000013), todavía con el enlace como stub. r1 la acepta. |
+| **18:31:30.071** | r2 → 224.0.0.5 | LS-Update | Router-LSA de r2 (seq 0x80000014): la adyacencia con r4 llegó a `Full` (unos 4,5 s después de levantar la interfaz) y 172.16.77.20/30 vuelve a ser una red de **tránsito** (DR 172.16.77.22). r1 **la descarta**: llegó 3,7 ms después de la 0x13 (MinLSArrival). |
+| 18:31:30.072 | r2 → 224.0.0.5, reinundado por r1 y r3 | LS-Update, 2 LSAs originados por r4 | Router-LSA de r4 (seq 0x8000000d) con el enlace de tránsito hacia r2 y Network-LSA 172.16.77.22 (seq 0x80000002) con r4 como DR. |
+| **18:31:35.069** | r2 → r1 (unicast), reinundado por r1 y r3 | LS-Update | Retransmisión de la 0x80000014 (RxmtInterval, 5 s). Ahora r1 la acepta. |
 
 ### Cómo se llega a cada ruta
 
 1. **Detección:** r2 detecta la caída en el acto porque es su propia interfaz.
-2. **Inundación:** r2 genera un Router-LSA sin el enlace a r4. En la captura llega a r1 a las 18:26:28.808 y en menos de 2 ms también llega por r3.
-3. **Cálculo:** cada router corre SPF. Como r2 ya no anuncia el segmento r2–r4, el chequeo bidireccional de OSPF descarta ese enlace en **todos** los routers, aunque r4 todavía no detectó la caída (su eth0 sigue `UP` y r2 sigue en `Full` hasta las 18:27:01). Sin ese enlace, el camino más barato entre r1 y r6 es el respaldo (60), tal como estaba previsto en la sección 2.2.
-4. **Restauración:** al levantar eth2, r2 anuncia primero la red como stub, que no sirve como tránsito. Recién cuando la adyacencia con r4 llega a `Full` (unos 7 s después, el tiempo de intercambio de Hellos y de bases de datos), r2 y r4 anuncian el enlace como tránsito, el SPF vuelve a encontrar el principal (30) y la ruta regresa a él.
+2. **Inundación:** r2 genera un Router-LSA sin el enlace a r4. En la captura llega a r1 a las 18:30:34.560 y, en menos de 2 ms, también por r3.
+3. **Cálculo:** cada router corre SPF. Como r2 ya no anuncia el segmento r2–r4, el chequeo bidireccional de OSPF descarta ese enlace en **todos** los routers, aunque r4 todavía no detectó la caída (su eth0 sigue `UP` y r2 sigue en `Full` hasta las 18:31:09). Sin ese enlace, el camino más barato entre r1 y r6 es el respaldo (60), tal como estaba previsto en la sección 2.2. Que r1 descarte las versiones 0x10 y 0x11 no demora el cambio, porque la primera versión aceptada (0x0f) ya informa la caída.
+4. **Restauración:** al levantar eth2, r2 anuncia primero la red como stub, que no sirve como tránsito. La adyacencia con r4 llega a `Full` unos 4,5 s después, y r2 y r4 anuncian el enlace como tránsito. En r1, en cambio, la versión de tránsito de r2 (0x14) se descarta por llegar 3,7 ms después de la anterior, y el enlace vuelve a ser utilizable recién con la retransmisión de las 18:31:35.069. Ahí el SPF vuelve a encontrar el principal (30) y la ruta regresa a él, unos 9,5 s después de levantar la interfaz. Es el mismo mecanismo (MinLSArrival + retransmisión a los 5 s) observado en la Parte 1.4.
 
 ## 6. Efectos colaterales de los costos
 

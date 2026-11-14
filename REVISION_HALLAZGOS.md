@@ -21,6 +21,7 @@ Leyenda:
 - [ ] **FALTA:** no hay `Obligatorio2Grupo77.pdf`. Solo hay cuatro informes sueltos: `parte1.5/informe_1.5.md`, `parte2.2/informe_2.2.md`, `parte2.3/informe_2.3.md` y `parte3/informe_3.md`.
 - [ ] **FALTA:** no hay informes de **1.1, 1.2, 1.3, 1.4, 2.1 ni 2.4**. Ver la sección 3.
 - [ ] **FALTA:** no hay ninguna figura (png, svg ni drawio). La letra pide topologías anotadas en 1.1, 1.4 y 2.1.
+  - *Avance 14/11:* hay `informe/figuras/topologia-1.1-grupo77.drawio` y `topologia_1.4.drawio`. Falta la de 2.1 y exportarlas a PNG.
 - [ ] **FALTA:** no está la declaración de uso de IA.
 - [ ] **FALTA:** no hay `README.txt` en la raíz. Tiene que explicar cómo levantar cada escenario (1.1 a 3) desde cero y qué pcap o script corresponde a cada experimento. Hoy el único README es `parte3/README.txt`.
 - [ ] **FALTA:** no está el `obligatorio2Grupo77.tar.gz`.
@@ -39,6 +40,7 @@ Leyenda:
     - `parte2.3`: `rcla.startup:10`, `srv1.startup:12-13`, `p4sw3/commands.txt:15-16`, `pruebas_2.3.sh:29`, `resultados/*`
     - `parte2.4`: `rcla.startup:10`, `srv1.startup:12-13`, `p4sw3/commands.txt:15-16`
   - **(b)** Documentar en los informes de la Parte 2 que el problema se detectó y se corrigió en la Parte 3.
+- *Avance 14/11:* se aplicó la opción (a) en los configs: 2.1 a 2.4 usan srv1 = 203.0.113.98 (commit 8e72f10 y siguientes). **Sin verificar** si se regeneraron los resultados de 2.2 y 2.3. `informe_3.md` ya explica que la corrección se aplicó hacia atrás.
 
 ### 2.2 Parte 1.2: `redistribute static` mete 8.8.8.0/24 en OSPF (ERROR) *(sin verificar)*
 - Está en `parte1.2/r1/etc/frr/frr.conf:31` y en `r6/etc/frr/frr.conf:28`.
@@ -52,13 +54,16 @@ Leyenda:
 - **Acción:** repetir las corridas 1 y 2, o descartarlas explicando por qué. La letra pide al menos 5 corridas.
 - Los pcaps se llaman `falla_r4_r5`/`falla_r2_r5` por el enlace donde se capturó, no por el que falló, que fue r2–r4 (verificado en `rutas_despues_r2`). Hay que aclararlo en el informe. Además, ambos pcaps cubren solo la corrida 1.
 
-### 2.4 Parte 1.4: las evidencias son de corridas distintas (ERROR) *(sin verificar)*
+### 2.4 Parte 1.4: las evidencias son de corridas distintas (ERROR) — ✅ RESUELTO 14/11
+- Se hicieron 3 corridas limpias (run2 a run4) con registro del alta (`alta_r7/r8_runN.txt`), monitor de r1 y pcaps de L57 y L68 (commit 716ab87). Análisis en `informe/1.4.md`. La corrida 1 se conserva y se aclara que no tiene t0 válido.
 - `alta_run1.txt` es del 28/10, mientras que `r1_monitor_run1.txt` y los pcaps son del 29/10.
 - Hay una sola corrida y no hay un timestamp explícito del momento del alta.
 - Los ~5,0 s solo se pueden sacar cruzando el DBD de r5–r7 en el pcap (15:14:23.256, en hora local UTC-3) con el monitor de r1 (18:14:28.275, en UTC).
 - **Acción:** hacer una corrida limpia que registre el instante del alta.
 
-### 2.5 Parte 3: los resultados commiteados no salieron del script actual (ERROR)
+### 2.5 Parte 3: los resultados commiteados no salieron del script actual (ERROR) — ✅ RESUELTO 14/11
+- Causa de los `?`: BMv2 imprime `(N bytes, M packets)` y `t.sh` no reconocía ese formato. Corregido en `shared/t.sh`.
+- Nueva corrida con `--pcap`: 38/38, 0 errores. Contadores: invitados descartados +16 (coincide con las capturas), port security +3. Las capturas `p3_*` ahora cubren toda la matriz (se cortan con `capstop`).
 - `parte3/resultados/resumen.txt:40-42` muestra los contadores P4 como `? -> ?`.
 - Faltan las líneas de port security (`pruebas.sh:129-130`) y no existe `evidencia_p4.txt`, aunque `leer_cnt` siempre lo escribe.
 - Por eso `informe_3.md:29`, que dice que port security bloquea a pc_admin4, no tiene respaldo.
@@ -78,7 +83,7 @@ Leyenda:
 | 1.1 | Tabla de numeración, explicación de rutas estáticas y NAT, figura |
 | 1.2 | LSDB, FIB y `show ip ospf neighbor` de ≥2 routers con comparación; análisis de caminos A↔B y A↔Internet; justificación de costos (todos valen 10) |
 | 1.3 | Tabla con mín/máx/promedio, explicación de la variabilidad, secuencia de mensajes OSPF, respuesta a la pregunta 1.3 |
-| 1.4 | Qué se configuró a mano y qué se aprendió por OSPF (la estática de `rint.startup:13` es la parte manual); por qué r1 aprende primero solo por r7, ya que r6–r8 se forma después; figura actualizada |
+| 1.4 | ✅ Cubierto en `informe/1.4.md` (14/11): manual vs. aprendido, por qué en la corrida 1 r1 aprende primero por r7, figura en drawio (falta el PNG) |
 | 2.1 | Tabla de numeración (VLSM), figura, dominios de broadcast y colisión, por qué los pcaps de ARP están vacíos o sin respuesta (el switch todavía es el esqueleto) |
 | 2.2 | Mostrar `commands.txt` y enlazar cada afirmación con su pcap o resultado |
 | 2.4 | Regla exacta, cómo se verificó, relación con los conceptos de capa 2, que se mantiene la ACL de 2.3 |
@@ -86,13 +91,13 @@ Leyenda:
 ## 4. Menores
 
 **Parte 3**
-- `pruebas.sh:112`: todo lo que no tenga `RESULTADO=OK` cuenta como FALLA. Si `kathara exec` falla, los casos negativos (03, 06, 12 y 17 a 20) "pasan" igual. Habría que exigir que la salida contenga `RESULTADO=`.
-- Casos que faltan en la matriz: pcc→8.8.8.8, srvb y srvb2→Internet, pcb2↔pcb3 (el informe dice que "los tres PCs se alcanzan entre sí"), dev→srv1, guest2 y guest3.
+- ✅ *(resuelto 14/11)* `pruebas.sh:112`: todo lo que no tenga `RESULTADO=OK` cuenta como FALLA. Ahora hay un tercer resultado, ERROR, que nunca cuenta como acierto. Se comprobó que el problema era real: desde Git Bash sin `MSYS_NO_PATHCONV=1`, ninguna prueba devuelve `RESULTADO=`.
+- Casos que faltan en la matriz: ~~pcc→8.8.8.8~~ (agregado junto con 8 casos más del Cliente C, 11a–11i), srvb y srvb2→Internet, pcb2↔pcb3 (el informe dice que "los tres PCs se alcanzan entre sí"), dev→srv1, guest2 y guest3.
 - Afirmaciones de `informe_3.md` sin evidencia:
   - Línea 25: "los contadores de NAT aumentan". Hay una sola foto, tomada después de las pruebas.
   - Línea 27: "cada servidor ve la IP de NAT como origen". No hay logs ni capturas.
-  - Línea 31: "la solicitud llega a destino".
-- `informe_3.md:7` dice que rcla y rclb anuncian por OSPF, pero no corren OSPF. Los que redistribuyen las estáticas son r3 y r5.
+  - ~~Línea 31: "la solicitud llega a destino".~~ ✅ Ahora cita `p3_sw3_eth*.pcap` (3 respuestas entran a p4sw3, 0 salen).
+- ✅ *(resuelto 14/11)* `informe_3.md:7` dice que rcla y rclb anuncian por OSPF, pero no corren OSPF. Ahora dice que son r3 y r5 los que redistribuyen.
 - `r1.startup` arranca frr en un orden distinto al de los demás routers. Funciona, pero es inconsistente.
 
 **Parte 2**
@@ -120,13 +125,13 @@ Leyenda:
 - **1.1:** no hay direcciones superpuestas. Los enlaces del ISP son /30. Las rutas estáticas de r1 a r6 están completas. Los dos SNAT están bien y aparecen en `nat_lan.pcap` y `nat_isp.pcap`.
 - **1.2:** ninguna LAN privada de clientes se filtra a OSPF. El pcap de arranque tiene DBD, LSR, LSU y LSAck.
 - **1.3:** la falla fue efectivamente en r2–r4. Hay 6 corridas y tablas antes y después para r1, r2 y r4.
-- **1.4:** hay 3 enlaces nuevos (r5–r7, r7–r8 y r6–r8), no se renumeró nada y la LAN 203.0.113.64/28 está como pasiva en r8.
+- **1.4:** hay 3 enlaces nuevos (r5–r7, r7–r8 y r6–r8) y no se renumeró nada. *(14/11)* La LAN 203.0.113.64/28 ya no es pasiva en r8: está detrás de rclC y se redistribuye como LSA tipo 5, igual en 1.4, 1.5 y 3.
 - **1.5:** está completa. Los costos de los configs coinciden con el informe, y las rutas y traceroutes coinciden con el objetivo (métrica 30 y 60, en ambos sentidos).
 - **2.1:** el VLSM es correcto: INV 10.77.0.0/23, DEV 10.77.2.0/25 y ADMIN 10.77.2.128/26.
 - **2.2:** el P4 es correcto y pasan 46/46 pruebas.
 - **2.3:** pasan 50/50 pruebas. El caso de reenviar después de descartar está evitado y el análisis stateless es correcto.
 - **2.4:** la lógica de port_security es correcta: la clave es (ingress_port, srcAddr) y se aplica antes de la ACL.
-- **3:** no hay solapamiento público. OSPF solo anuncia lo permitido y hay 24 adyacencias Full. El NAT de rcla y rclb está bien. La ACL apunta a .98. El resumen marca 31/31.
+- **3:** no hay solapamiento público. OSPF solo anuncia lo permitido y hay 24 adyacencias Full. El NAT de rcla y rclb está bien. La ACL apunta a .98. El resumen marca 38/38 *(corrida del 14/11)*.
 
 ## 6. Preguntas al profesor
 
