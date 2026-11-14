@@ -12,7 +12,8 @@
 #   ospfnei | ospfroute  -> vtysh: vecinos OSPF / tabla de ruteo
 #   trace IP             -> traceroute numerico
 #   nat                  -> reglas y contadores de la tabla nat
-#   capstart IF ARCHIVO  -> tcpdump en segundo plano 150 s, guarda en /shared/ARCHIVO
+#   capstart IF ARCHIVO  -> tcpdump en segundo plano (tope 600 s), guarda en /shared/ARCHIVO
+#   capstop              -> corta los tcpdump del equipo (OK si no queda ninguno)
 
 modo="$1"; shift
 rc=0
@@ -25,14 +26,16 @@ case "$modo" in
     p4cnt)     # BMv2 imprime "BmCounterValue(packets=N, ...)" o "(B bytes, N pkts)" segun la version
                out=$(echo "counter_read MyIngress.$1 $2" | simple_switch_CLI 2>&1)
                echo "$out" | grep -i "$1"
-               n=$(echo "$out" | grep -oE "packets=[0-9]+|[0-9]+ pkts" | grep -oE "[0-9]+" | head -1)
+               n=$(echo "$out" | grep -oE "packets=[0-9]+|[0-9]+ pkts|[0-9]+ packets" | grep -oE "[0-9]+" | head -1)
                echo "PAQUETES=$n"; [ -n "$n" ]; rc=$? ;;
     ospfnei)   vtysh -c "show ip ospf neighbor" ;;
     ospfroute) vtysh -c "show ip route" ;;
     trace)     traceroute -n -w 1 -q 1 "$1" 2>&1 ;;
     nat)       iptables -t nat -L POSTROUTING -n -v ;;
-    capstart)  setsid nohup timeout 150 tcpdump -i "$1" -w "/shared/$2" > /dev/null 2>&1 < /dev/null &
+    capstart)  # tope de seguridad de 600 s; normalmente la corta "capstop" al terminar las pruebas
+               setsid nohup timeout 600 tcpdump -U -i "$1" -w "/shared/$2" > /dev/null 2>&1 < /dev/null &
                sleep 1 ;;
+    capstop)   pkill -INT tcpdump; sleep 1; ! pgrep tcpdump > /dev/null; rc=$? ;;
     *)         echo "modo desconocido: $modo"; rc=2 ;;
 esac
 

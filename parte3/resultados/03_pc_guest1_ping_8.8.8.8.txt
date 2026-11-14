@@ -1,6 +1,6 @@
 PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 
 --- 8.8.8.8 ping statistics ---
-3 packets transmitted, 0 received, 100% packet loss, time 2064ms
+3 packets transmitted, 0 received, 100% packet loss, time 2167ms
 
 RESULTADO=FALLA

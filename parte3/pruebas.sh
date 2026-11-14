@@ -62,8 +62,15 @@ PRUEBAS="
 08b|pcint|http|203.0.113.35|OK|Internet a srvb2
 09|pcb1|http|203.0.113.98|OK|Cliente B a servidor de A
 10|pc_admin1|http|203.0.113.34|OK|Cliente A a servidor de B
-11a|pcc|http|203.0.113.98|OK|POP nuevo (r8) a srv1
-11b|pcc|http|203.0.113.34|OK|POP nuevo (r8) a srvB
+11a|pcc|ping|203.0.113.65|OK|C interna: pcC a su gateway (rclC)
+11b|pcc|ping|8.8.8.8|OK|C a Internet sin NAT (LAN publica)
+11c|pcint|ping|203.0.113.66|OK|Internet a pcC (LAN publica, sin NAT)
+11d|pcc|http|203.0.113.98|OK|C a servidor de A (srv1)
+11e|pcc|http|203.0.113.34|OK|C a servidor de B (srvB)
+11f|pc_admin1|ping|203.0.113.66|OK|A (con NAT) a pcC
+11g|pcb1|ping|203.0.113.66|OK|B (con NAT) a pcC
+11h|pc_guest1|ping|203.0.113.66|FALLA|Invitado de A a pcC: bloqueado por P4
+11i|pcc|ping|10.77.2.130|FALLA|C a privada de A: sin ruta en el backbone
 12|pc_admin1|ping|10.77.0.10|FALLA|Privada de B no alcanzable (solapamiento + NAT)
 13|pc_admin1|ping|10.77.2.2|OK|ADMIN a DEV (ruteo en rcla)
 14a|pc_admin1|ping|203.0.113.98|OK|ADMIN a srv1 ICMP
@@ -87,7 +94,7 @@ pol_dr_0=$(leer_cnt p4sw3 guest_policy_cnt 1)
 psec_0=$(leer_cnt p4sw1 portsec_viol_cnt 5)   # puerto 5 = eth4 = pc_admin4
 
 if [ $PCAP -eq 1 ]; then
-    echo "Iniciando capturas (150 s) en shared/ ..."
+    echo "Iniciando capturas en shared/ (se cortan al terminar la matriz) ..."
     ex rcla  capstart eth0 p3_rcla_eth0_admin.pcap > /dev/null
     ex rcla  capstart eth4 p3_rcla_eth4_isp.pcap   > /dev/null
     ex p4sw3 capstart eth1 p3_sw3_eth1_guest1.pcap > /dev/null
@@ -103,17 +110,29 @@ RES="$OUT/resumen.txt"
     printf '%.0s-' {1..110}; echo
 } > "$RES"
 
-total=0; bien=0
+total=0; bien=0; errores=0
 while IFS='|' read -r id org modo dst esp desc; do
     [ -z "$id" ] && continue
     total=$((total + 1))
     salida=$(ex "$org" "$modo" "$dst")
     echo "$salida" > "$OUT/${id}_${org}_${modo}_${dst}.txt"
-    if echo "$salida" | grep -q "RESULTADO=OK"; then obs=OK; else obs=FALLA; fi
-    if [ "$obs" = "$esp" ]; then marca="PASA"; bien=$((bien + 1)); else marca="XXX"; fi
+    # Tres resultados posibles. Si la salida no trae RESULTADO=, la prueba no llego
+    # a ejecutarse (lab caido, equipo inexistente, error de kathara exec): es ERROR,
+    # nunca FALLA, para que una prueba negativa no "pase" sin haber probado nada.
+    if   echo "$salida" | grep -q "RESULTADO=OK";    then obs=OK
+    elif echo "$salida" | grep -q "RESULTADO=FALLA"; then obs=FALLA
+    else obs=ERROR; errores=$((errores + 1)); fi
+    if   [ "$obs" = "ERROR" ]; then marca="ERR"
+    elif [ "$obs" = "$esp" ];  then marca="PASA"; bien=$((bien + 1))
+    else marca="XXX"; fi
     linea=$(printf "%-4s %-10s %-6s %-14s %-9s %-9s %-5s %s" "$id" "$org" "$modo" "$dst" "$esp" "$obs" "$marca" "$desc")
     echo "$linea"; echo "$linea" >> "$RES"
 done <<< "$PRUEBAS"
+
+if [ $PCAP -eq 1 ]; then
+    ex rcla  capstop > /dev/null
+    ex p4sw3 capstop > /dev/null
+fi
 
 pol_ok_1=$(leer_cnt p4sw3 guest_policy_cnt 0)
 pol_dr_1=$(leer_cnt p4sw3 guest_policy_cnt 1)
@@ -122,6 +141,7 @@ psec_1=$(leer_cnt p4sw1 portsec_viol_cnt 5)
 {
     echo
     echo "Coinciden con lo esperado: $bien / $total"
+    echo "No se pudieron ejecutar (ERROR): $errores"
     echo
     echo "Contadores P4 de p4sw3 (guest_policy_cnt) durante las pruebas:"
     echo "  permitidos:  ${pol_ok_0:-?} -> ${pol_ok_1:-?}  (delta $(( ${pol_ok_1:-0} - ${pol_ok_0:-0} )))"
@@ -143,9 +163,10 @@ done
 { echo "=== pc_admin1 -> 8.8.8.8"; ex pc_admin1 trace 8.8.8.8
   echo "=== pcb1 -> 8.8.8.8";      ex pcb1 trace 8.8.8.8
   echo "=== pcint -> srv1";        ex pcint trace 203.0.113.98
+  echo "=== pcint -> pcC";         ex pcint trace 203.0.113.66
 } > "$OUT/evidencia_traceroute.txt"
 { echo "=== rcla"; ex rcla nat; echo "=== rclb"; ex rclb nat; } > "$OUT/evidencia_nat.txt"
 
 
 echo "Listo. Ver $OUT/resumen.txt y $OUT/evidencia_*.txt"
-[ $PCAP -eq 1 ] && echo "Capturas en shared/p3_*.pcap (terminan solas a los 150 s)"
+[ $PCAP -eq 1 ] && echo "Capturas en shared/p3_*.pcap (cubren toda la matriz)"

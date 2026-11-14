@@ -1,9 +1,9 @@
 PING 203.0.113.98 (203.0.113.98) 56(84) bytes of data.
-64 bytes from 203.0.113.98: icmp_seq=1 ttl=63 time=1.98 ms
-64 bytes from 203.0.113.98: icmp_seq=2 ttl=63 time=5.37 ms
-64 bytes from 203.0.113.98: icmp_seq=3 ttl=63 time=5.22 ms
+64 bytes from 203.0.113.98: icmp_seq=1 ttl=63 time=8.86 ms
+64 bytes from 203.0.113.98: icmp_seq=2 ttl=63 time=15.3 ms
+64 bytes from 203.0.113.98: icmp_seq=3 ttl=63 time=8.01 ms
 
 --- 203.0.113.98 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2004ms
-rtt min/avg/max/mdev = 1.975/4.187/5.372/1.565 ms
+3 packets transmitted, 3 received, 0% packet loss, time 2054ms
+rtt min/avg/max/mdev = 8.012/10.725/15.301/3.253 ms
 RESULTADO=OK

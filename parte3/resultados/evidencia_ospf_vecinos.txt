@@ -1,64 +1,64 @@
 === r1
 
 Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
-2.2.2.2           1 Full/DR         1m08s             31.346s 172.16.77.10    eth1:172.16.77.9                     0     0     0
-3.3.3.3           1 Full/DR         1m08s             31.406s 172.16.77.14    eth2:172.16.77.13                    0     0     0
+2.2.2.2           1 Full/DR         25m10s            34.241s 172.16.77.10    eth1:172.16.77.9                     0     0     0
+3.3.3.3           1 Full/DR         25m14s            35.305s 172.16.77.14    eth2:172.16.77.13                    0     0     0
 
 RESULTADO=OK
 === r2
 
 Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
-1.1.1.1           1 Full/Backup     1m09s             30.873s 172.16.77.9     eth0:172.16.77.10                    0     0     0
-3.3.3.3           1 Full/DR         1m09s             30.933s 172.16.77.18    eth1:172.16.77.17                    0     0     0
-4.4.4.4           1 Full/DR         1m09s             30.933s 172.16.77.22    eth2:172.16.77.21                    0     0     0
-5.5.5.5           1 Full/DR         1m09s             31.003s 172.16.77.26    eth3:172.16.77.25                    0     0     0
+1.1.1.1           1 Full/Backup     25m16s            38.945s 172.16.77.9     eth0:172.16.77.10                    0     0     0
+3.3.3.3           1 Full/DR         25m20s            29.994s 172.16.77.18    eth1:172.16.77.17                    0     0     0
+4.4.4.4           1 Full/DR         25m16s            38.876s 172.16.77.22    eth2:172.16.77.21                    0     0     0
+5.5.5.5           1 Full/DR         25m19s            30.075s 172.16.77.26    eth3:172.16.77.25                    0     0     0
 
 RESULTADO=OK
 === r3
 
 Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
-1.1.1.1           1 Full/Backup     1m09s             30.407s 172.16.77.13    eth0:172.16.77.14                    0     0     0
-2.2.2.2           1 Full/Backup     1m04s             30.406s 172.16.77.17    eth1:172.16.77.18                    0     0     0
-5.5.5.5           1 Full/DR         1m09s             30.537s 172.16.77.30    eth2:172.16.77.29                    0     0     0
+1.1.1.1           1 Full/Backup     25m23s            35.926s 172.16.77.13    eth0:172.16.77.14                    0     0     0
+2.2.2.2           1 Full/Backup     25m23s            35.911s 172.16.77.17    eth1:172.16.77.18                    0     0     0
+5.5.5.5           1 Full/DR         25m22s            37.055s 172.16.77.30    eth2:172.16.77.29                    0     0     0
 
 RESULTADO=OK
 === r4
 
 Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
-2.2.2.2           1 Full/Backup     1m09s             39.944s 172.16.77.21    eth0:172.16.77.22                    0     0     0
-5.5.5.5           1 Full/DR         1m09s             30.075s 172.16.77.34    eth1:172.16.77.33                    0     0     0
-6.6.6.6           1 Full/DR         1m05s             39.958s 172.16.77.38    eth2:172.16.77.37                    0     0     0
+2.2.2.2           1 Full/Backup     25m23s            31.735s 172.16.77.21    eth0:172.16.77.22                    0     0     0
+5.5.5.5           1 Full/DR         25m27s            32.879s 172.16.77.34    eth1:172.16.77.33                    0     0     0
+6.6.6.6           1 Full/DR         25m25s            35.132s 172.16.77.38    eth2:172.16.77.37                    0     0     0
 
 RESULTADO=OK
 === r5
 
 Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
-2.2.2.2           1 Full/Backup     1m05s             39.479s 172.16.77.25    eth0:172.16.77.26                    0     0     0
-3.3.3.3           1 Full/Backup     1m05s             39.538s 172.16.77.29    eth1:172.16.77.30                    0     0     0
-4.4.4.4           1 Full/Backup     1m10s             39.565s 172.16.77.33    eth2:172.16.77.34                    0     0     0
-6.6.6.6           1 Full/DR         1m05s             39.493s 172.16.77.42    eth3:172.16.77.41                    0     0     0
-7.7.7.7           1 Full/DR         1m04s             35.878s 172.16.77.46    eth5:172.16.77.45                    0     0     0
+2.2.2.2           1 Full/Backup     25m27s            37.654s 172.16.77.25    eth0:172.16.77.26                    0     0     0
+3.3.3.3           1 Full/Backup     25m31s            38.718s 172.16.77.29    eth1:172.16.77.30                    0     0     0
+4.4.4.4           1 Full/Backup     25m31s            37.601s 172.16.77.33    eth2:172.16.77.34                    0     0     0
+6.6.6.6           1 Full/DR         25m27s            31.052s 172.16.77.42    eth3:172.16.77.41                    0     0     0
+7.7.7.7           1 Full/DR         25m22s            37.474s 172.16.77.46    eth5:172.16.77.45                    0     0     0
 
 RESULTADO=OK
 === r6
 
 Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
-4.4.4.4           1 Full/Backup     1m05s             39.099s 172.16.77.37    eth1:172.16.77.38                    0     0     0
-5.5.5.5           1 Full/Backup     1m04s             39.145s 172.16.77.41    eth2:172.16.77.42                    0     0     0
-8.8.8.8           1 Full/DR         1m04s             35.815s 172.16.77.50    eth3:172.16.77.49                    0     0     0
+4.4.4.4           1 Full/Backup     25m32s            34.709s 172.16.77.37    eth1:172.16.77.38                    0     0     0
+5.5.5.5           1 Full/Backup     25m30s            35.907s 172.16.77.41    eth2:172.16.77.42                    0     0     0
+8.8.8.8           1 Full/DR         25m25s            34.673s 172.16.77.50    eth3:172.16.77.49                    0     0     0
 
 RESULTADO=OK
 === r7
 
 Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
-5.5.5.5           1 Full/Backup     1m05s             38.685s 172.16.77.45    eth0:172.16.77.46                    0     0     0
-8.8.8.8           1 Full/DR         1m04s             35.355s 172.16.77.54    eth1:172.16.77.53                    0     0     0
+5.5.5.5           1 Full/Backup     25m31s            30.216s 172.16.77.45    eth0:172.16.77.46                    0     0     0
+8.8.8.8           1 Full/DR         25m31s            38.842s 172.16.77.54    eth1:172.16.77.53                    0     0     0
 
 RESULTADO=OK
 === r8
 
 Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
-6.6.6.6           1 Full/Backup     1m05s             38.097s 172.16.77.49    eth0:172.16.77.50                    0     0     0
-7.7.7.7           1 Full/Backup     1m00s             34.482s 172.16.77.53    eth1:172.16.77.54                    0     0     0
+6.6.6.6           1 Full/Backup     25m35s            38.281s 172.16.77.49    eth0:172.16.77.50                    0     0     0
+7.7.7.7           1 Full/Backup     25m30s            34.703s 172.16.77.53    eth1:172.16.77.54                    0     0     0
 
 RESULTADO=OK

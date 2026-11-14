@@ -1,6 +1,6 @@
 PING 203.0.113.98 (203.0.113.98) 56(84) bytes of data.
 
 --- 203.0.113.98 ping statistics ---
-3 packets transmitted, 0 received, 100% packet loss, time 2076ms
+3 packets transmitted, 0 received, 100% packet loss, time 2105ms
 
 RESULTADO=FALLA

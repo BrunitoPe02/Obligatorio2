@@ -1,0 +1,24 @@
+=== p4sw3 guest_policy_cnt[0]
+RuntimeCmd: MyIngress.guest_policy_cnt[0]= (4850 bytes, 47 packets)
+PAQUETES=47
+RESULTADO=OK
+=== p4sw3 guest_policy_cnt[1]
+RuntimeCmd: MyIngress.guest_policy_cnt[1]= (2944 bytes, 32 packets)
+PAQUETES=32
+RESULTADO=OK
+=== p4sw1 portsec_viol_cnt[5]
+RuntimeCmd: MyIngress.portsec_viol_cnt[5]= (360 bytes, 6 packets)
+PAQUETES=6
+RESULTADO=OK
+=== p4sw3 guest_policy_cnt[0]
+RuntimeCmd: MyIngress.guest_policy_cnt[0]= (7245 bytes, 70 packets)
+PAQUETES=70
+RESULTADO=OK
+=== p4sw3 guest_policy_cnt[1]
+RuntimeCmd: MyIngress.guest_policy_cnt[1]= (4416 bytes, 48 packets)
+PAQUETES=48
+RESULTADO=OK
+=== p4sw1 portsec_viol_cnt[5]
+RuntimeCmd: MyIngress.portsec_viol_cnt[5]= (540 bytes, 9 packets)
+PAQUETES=9
+RESULTADO=OK

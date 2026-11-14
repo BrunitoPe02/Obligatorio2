@@ -1,9 +1,9 @@
 PING 10.77.2.2 (10.77.2.2) 56(84) bytes of data.
-64 bytes from 10.77.2.2: icmp_seq=1 ttl=63 time=2.51 ms
-64 bytes from 10.77.2.2: icmp_seq=2 ttl=63 time=5.83 ms
-64 bytes from 10.77.2.2: icmp_seq=3 ttl=63 time=5.93 ms
+64 bytes from 10.77.2.2: icmp_seq=1 ttl=63 time=20.0 ms
+64 bytes from 10.77.2.2: icmp_seq=2 ttl=63 time=13.1 ms
+64 bytes from 10.77.2.2: icmp_seq=3 ttl=63 time=53.5 ms
 
 --- 10.77.2.2 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2008ms
-rtt min/avg/max/mdev = 2.508/4.755/5.926/1.589 ms
+3 packets transmitted, 3 received, 0% packet loss, time 2061ms
+rtt min/avg/max/mdev = 13.093/28.873/53.510/17.648 ms
 RESULTADO=OK

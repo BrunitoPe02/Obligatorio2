@@ -1,5 +1,5 @@
 Parte 3 - Resultados de la matriz de pruebas
-Fecha: 2026-11-06 20:55:01
+Fecha: 2026-11-14 00:02:55
 
 ID   ORIGEN     MODO   DESTINO        ESPERADO  OBSERVADO       DESCRIPCION
 --------------------------------------------------------------------------------------------------------------
@@ -17,8 +17,15 @@ ID   ORIGEN     MODO   DESTINO        ESPERADO  OBSERVADO       DESCRIPCION
 08b  pcint      http   203.0.113.35   OK        OK        PASA  Internet a srvb2
 09   pcb1       http   203.0.113.98   OK        OK        PASA  Cliente B a servidor de A
 10   pc_admin1  http   203.0.113.34   OK        OK        PASA  Cliente A a servidor de B
-11a  pcc        http   203.0.113.98   OK        OK        PASA  POP nuevo (r8) a srv1
-11b  pcc        http   203.0.113.34   OK        OK        PASA  POP nuevo (r8) a srvB
+11a  pcc        ping   203.0.113.65   OK        OK        PASA  C interna: pcC a su gateway (rclC)
+11b  pcc        ping   8.8.8.8        OK        OK        PASA  C a Internet sin NAT (LAN publica)
+11c  pcint      ping   203.0.113.66   OK        OK        PASA  Internet a pcC (LAN publica, sin NAT)
+11d  pcc        http   203.0.113.98   OK        OK        PASA  C a servidor de A (srv1)
+11e  pcc        http   203.0.113.34   OK        OK        PASA  C a servidor de B (srvB)
+11f  pc_admin1  ping   203.0.113.66   OK        OK        PASA  A (con NAT) a pcC
+11g  pcb1       ping   203.0.113.66   OK        OK        PASA  B (con NAT) a pcC
+11h  pc_guest1  ping   203.0.113.66   FALLA     FALLA     PASA  Invitado de A a pcC: bloqueado por P4
+11i  pcc        ping   10.77.2.130    FALLA     FALLA     PASA  C a privada de A: sin ruta en el backbone
 12   pc_admin1  ping   10.77.0.10     FALLA     FALLA     PASA  Privada de B no alcanzable (solapamiento + NAT)
 13   pc_admin1  ping   10.77.2.2      OK        OK        PASA  ADMIN a DEV (ruteo en rcla)
 14a  pc_admin1  ping   203.0.113.98   OK        OK        PASA  ADMIN a srv1 ICMP
@@ -35,8 +42,11 @@ ID   ORIGEN     MODO   DESTINO        ESPERADO  OBSERVADO       DESCRIPCION
 22a  pcb1       http   203.0.113.34   OK        OK        PASA  LAN B a DMZ (srvB)
 22b  pcb1       http   203.0.113.35   OK        OK        PASA  LAN B a DMZ (srvb2)
 
-Coinciden con lo esperado: 31 / 31
+Coinciden con lo esperado: 38 / 38
+No se pudieron ejecutar (ERROR): 0
 
 Contadores P4 de p4sw3 (guest_policy_cnt) durante las pruebas:
-  permitidos:  ? -> ?  (delta 0)
-  descartados: ? -> ?  (delta 0)
+  permitidos:  47 -> 70  (delta 23)
+  descartados: 32 -> 48  (delta 16)
+Contador de port security en p4sw1 (violaciones en el puerto de pc_admin4):
+  violaciones: 6 -> 9  (delta 3)

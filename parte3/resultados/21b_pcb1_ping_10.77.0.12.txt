@@ -1,9 +1,9 @@
 PING 10.77.0.12 (10.77.0.12) 56(84) bytes of data.
-64 bytes from 10.77.0.12: icmp_seq=1 ttl=64 time=0.889 ms
-64 bytes from 10.77.0.12: icmp_seq=2 ttl=64 time=0.877 ms
-64 bytes from 10.77.0.12: icmp_seq=3 ttl=64 time=0.976 ms
+64 bytes from 10.77.0.12: icmp_seq=1 ttl=64 time=1.74 ms
+64 bytes from 10.77.0.12: icmp_seq=2 ttl=64 time=0.867 ms
+64 bytes from 10.77.0.12: icmp_seq=3 ttl=64 time=1.15 ms
 
 --- 10.77.0.12 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2073ms
-rtt min/avg/max/mdev = 0.877/0.914/0.976/0.044 ms
+3 packets transmitted, 3 received, 0% packet loss, time 2056ms
+rtt min/avg/max/mdev = 0.867/1.253/1.740/0.363 ms
 RESULTADO=OK
